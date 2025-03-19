@@ -246,7 +246,7 @@ class RegisterController extends Controller
 
             return response()->json([
                 'status' => false,
-                'message' => "Incorrect Pin",
+                'message' => "Incorrect Password",
             ], 422);
 
         }
@@ -261,7 +261,7 @@ class RegisterController extends Controller
 
             return response()->json([
                 'status' => true,
-                'message' => "Pin set Successfully",
+                'message' => "Password set Successfully",
             ], 200);
 
         }else{
