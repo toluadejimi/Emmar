@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+    etop:
+        container_name: etop-merchnat
+        build:
+            context: .
+            target: php
+            args:
+                - APP_ENV=${APP_ENV}
+        environment:
+            - APP_ENV=${APP_ENV}
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+        ports:
+            - 9001:8080
