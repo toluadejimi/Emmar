@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3585023b-e5bf-4ab9-8287-1463f1397fd4" name="Changes" comment="export terminal by  banks added">
       <change afterPath="$PROJECT_DIR$/../posy/public/storage" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../posy/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../posy/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../posy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../posy/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -24,7 +25,7 @@
     <execution />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../posy" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {

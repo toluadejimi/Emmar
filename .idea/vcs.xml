@@ -2,7 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/myenv/bin/face_recognition_models" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../posy" vcs="Git" />
   </component>
 </project>
