@@ -3,10 +3,10 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BankController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\StoredataController;
 use App\Http\Controllers\Admin\TerminalController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Mobile\Auth\LoginController;
 use App\Http\Controllers\Mobile\Auth\RegisterController;
 use App\Http\Controllers\Mobile\Face\FaceRecognitionController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +21,8 @@ Route::post('save-image', [RegisterController::class, 'save_face_image']);
 Route::post('set-password', [RegisterController::class, 'set_password']);
 Route::post('set-pin', [RegisterController::class, 'set_pin']);
 Route::post('verify-face', [FaceRecognitionController::class, 'compareFaces']);
+Route::post('verify-code', [RegisterController::class, 'verify_code']);
+Route::post('login', [LoginController::class, 'login']);
 
 
 
@@ -30,8 +32,6 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['middleware' => ['auth:api', 'acess']], function () {
 
-
-        //Banks
         Route::post('create-bank', [BankController::class, 'create_bank']);
         Route::post('update-bank', [BankController::class, 'update_bank']);
         Route::post('delete-bank', [BankController::class, 'delete_bank']);
@@ -39,12 +39,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('get-all-banks', [BankController::class, 'get_all_banks']);
         Route::get('all-banks', [BankController::class, 'all_banks']);
 
-
-        //Dashboard
         Route::get('dashboard', [DashboardController::class, 'dashboard_data']);
 
-
-        //User
         Route::post('create-user', [UserController::class, 'create_user']);
         Route::post('update-user', [UserController::class, 'update_user']);
         Route::get('list-users', [UserController::class, 'get_users']);
@@ -53,22 +49,12 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('delete-users', [UserController::class, 'delete_user']);
         Route::post('search-users', [UserController::class, 'search_user']);
 
-
-
-
-        //Transaction
         Route::get('get-transactions/{limit}', [TransactionController::class, 'get_all_transactions']);
         Route::get('get-transactions-filter/{limit}', [TransactionController::class, 'get_transactions_by_filter']);
         Route::get('export-transactions', [TransactionController::class, 'export_transactions']);
 
-
-
-
-
         Route::post('transaction-filter', [TransactionController::class, 'get_all_transaction_by_filter']);
 
-
-        //Terminal
         Route::post('create-terminal', [TerminalController::class, 'create_terminal']);
         Route::post('update-terminal', [TerminalController::class, 'update_terminal']);
         Route::get('view-terminal', [TerminalController::class, 'view_all_terminal']);

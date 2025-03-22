@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Models\Account;
 use App\Models\BusinessSetting;
 use App\Models\Terminal;
 use App\Models\Zone;
@@ -395,6 +396,13 @@ function send_sms_termii($phone, $message)
 
     return response()->json($response);
 
+
+}
+
+function get_account($user_id){
+
+    $account = Account::where('user_id', $user_id)->get()->makeHidden(['created_at', 'updated_at']);
+    return $account;
 
 }
 

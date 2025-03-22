@@ -106,16 +106,23 @@ class RegisterController extends Controller
 
         $phone_no = preg_replace('/^\[?0\]?/', '', $request->phone);
         $phone = "+234" . $phone_no;
-        if($request->gender === "male"){
+        if ($request->gender === "male") {
             $gender = 0;
-        }else{
+        } else {
             $gender = 1;
         }
+
+        if($request->other_name == null){
+        $other_name =  $request->last_name;
+        }else{
+            $other_name = $request->other_name;
+        }
+
         $usr = User::where('phone', $phone)->update([
 
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            'other_name' => $request->other_name,
+            'other_name' => $other_name,
             'dob' => $request->dob,
             'bvn' => $request->bvn,
             'gender' => $gender,
@@ -124,14 +131,14 @@ class RegisterController extends Controller
 
         ]);
 
-        if($usr){
+        if ($usr) {
 
             return response()->json([
                 'status' => true,
                 'message' => "User Info Updated Successfully",
             ], 200);
 
-        }else{
+        } else {
 
             return response()->json([
                 'status' => false,
@@ -190,14 +197,14 @@ class RegisterController extends Controller
 
         ]);
 
-        if($usr){
+        if ($usr) {
 
             return response()->json([
                 'status' => true,
                 'message' => "User Info Updated Successfully",
             ], 200);
 
-        }else{
+        } else {
 
             return response()->json([
                 'status' => false,
@@ -210,7 +217,8 @@ class RegisterController extends Controller
     }
 
 
-    public function save_face_image(request $request){
+    public function save_face_image(request $request)
+    {
 
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -223,14 +231,14 @@ class RegisterController extends Controller
             'image' => $path,
         ]);
 
-        if($usr){
+        if ($usr) {
 
             return response()->json([
                 'status' => true,
                 'message' => "Image has been saved Successfully",
             ], 200);
 
-        }else{
+        } else {
 
             return response()->json([
                 'status' => false,
@@ -240,43 +248,11 @@ class RegisterController extends Controller
         }
 
     }
-    public function set_password(request $request){
 
-        if($request->password !== $request->confirm_password){
+    public function set_password(request $request)
+    {
 
-            return response()->json([
-                'status' => false,
-                'message' => "Incorrect Password",
-            ], 422);
-
-        }
-
-        $phone_no = preg_replace('/^\[?0\]?/', '', $request->phone);
-        $phone = "+234" . $phone_no;
-        $usr = User::where('phone', $phone)->update([
-            'pin' => bcrypt($request->pin),
-        ]);
-
-        if($usr){
-
-            return response()->json([
-                'status' => true,
-                'message' => "Password set Successfully",
-            ], 200);
-
-        }else{
-
-            return response()->json([
-                'status' => false,
-                'message' => "Something went wrong",
-            ], 422);
-
-        }
-
-    }
-    public function set_pin(request $request){
-
-        if($request->pin !== $request->pin){
+        if ($request->password !== $request->confirm_password) {
 
             return response()->json([
                 'status' => false,
@@ -291,18 +267,59 @@ class RegisterController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        if($usr){
+        if ($usr) {
+
+            return response()->json([
+                'status' => true,
+                'message' => "Password set Successfully",
+            ], 200);
+
+        } else {
+
+            return response()->json([
+                'status' => false,
+                'message' => "Something went wrong",
+            ], 422);
+
+        }
+
+    }
+
+    public function set_pin(request $request)
+    {
+
+        if ($request->pin !== $request->pin) {
+
+            return response()->json([
+                'status' => false,
+                'message' => "Incorrect Password",
+            ], 422);
+
+        }
+
+        $phone_no = preg_replace('/^\[?0\]?/', '', $request->phone);
+        $phone = "+234" . $phone_no;
+        $usr = User::where('phone', $phone)->update([
+            'password' => bcrypt($request->password),
+        ]);
+
+        if ($usr) {
 
             $user = User::where('phone', $phone)->first();
-            $TransactionTrackingRef = "EMAC".random_int(000000000, 999999999);
+            $TransactionTrackingRef = "EMAC" . random_int(000000000, 999999999);
             $user_id = $user->id;
+            $usr = User::find($user_id);
+            $usr->status = 1;
+            $usr->save();
+
 
             $data = [
                 'TransactionTrackingRef' => $TransactionTrackingRef,
                 'AccountOpeningTrackingRef' => $TransactionTrackingRef,
                 'ProductCode' => '101',
                 'LastName' => $user->last_name,
-                'OtherNames' => $user->last_names,
+                'FirstName' => $user->first_name,
+                'OtherNames' => $user->other_name,
                 'BVN' => $user->bvn,
                 'PhoneNo' => $user->phone_no,
                 'Gender' => $user->gender,
@@ -314,14 +331,30 @@ class RegisterController extends Controller
 
             $response = $this->bankOneService->createAccount($data, $user_id);
 
-            if($response === 1){
+
+            $status = $response['status'] ?? null;
+
+
+            if ($status === 1) {
+                $set = Setting::where('id', 1)->first();
+                $acct = $response['account_no'];
+                $message =  "Dear Customer, welcome to EMAAR MFB. Your account number is $acct. Thank you for choosing us.";
+
+                if ($set->sms_provider == "africa") {
+                    $send_sms = send_sms_africa($phone, $message);
+                } else {
+                    $smsService = new TermiiService();
+                    $send_sms = send_sms_termii($phone, $message);
+                }
+
+
 
                 return response()->json([
                     'status' => true,
                     'message' => "Congratulations! \n\n Your Tier-1 account has been created successfully.",
                 ], 200);
 
-            }else {
+            } else {
 
                 return response()->json([
                     'status' => false,
@@ -330,7 +363,7 @@ class RegisterController extends Controller
             }
 
 
-        }else{
+        } else {
 
             return response()->json([
                 'status' => false,
@@ -342,23 +375,58 @@ class RegisterController extends Controller
     }
 
 
-
     public function verify_phone_number(request $request)
     {
 
 
         $set = Setting::where('id', 1)->first();
-        $code = random_int(00000, 99999);
+        $code = random_int(0000, 9999);
         $phone_no = preg_replace('/^\[?0\]?/', '', $request->phone);
         $phone = "+234" . $phone_no;
 
-        $check_phone = User::where('phone', $phone)->where('is_phone_verified', 1)->first() ?? null;
-        if ($check_phone) {
+        User::where('phone', $phone)->update(['code' => $code]);
+
+        $check_phone = User::where('phone', $phone)->first() ?? null;
+        if ($check_phone->is_phone_verified == 1) {
 
             return response()->json([
                 'status' => false,
                 'message' => "Phone number already exist"
             ], 422);
+
+        } elseif ($check_phone->is_phone_verified == 0) {
+
+            $message = "Your Verification Code is $code";
+            if ($set->sms_provider == "africa") {
+                $send_sms = send_sms_africa($phone, $message);
+
+                if ($send_sms == 1) {
+                    return response()->json([
+                        'status' => true,
+                        'message' => "Otp Code has been sent successfully"
+                    ], 200);
+                } else {
+                    return response()->json([
+                        'status' => false,
+                        'message' => "Can not send sms at this time"
+                    ], 422);
+                }
+
+            } else {
+
+                $message = "Your Verification Code is $code";
+
+                $smsService = new TermiiService();
+                $response = $smsService->sendSms($phone, $message);
+
+                return response()->json($response);
+
+
+                $send_sms = send_sms_termii($phone, $message);
+
+
+            }
+
 
         } else {
 
@@ -371,7 +439,6 @@ class RegisterController extends Controller
                 $store_phone->save();
 
                 $message = "Your Verification Code is $code";
-
                 if ($set->sms_provider == "africa") {
                     $send_sms = send_sms_africa($phone, $message);
 
@@ -405,6 +472,28 @@ class RegisterController extends Controller
 
             }
 
+
+        }
+
+    }
+
+    public function verify_code(request $request)
+    {
+
+        $phone_no = preg_replace('/^\[?0\]?/', '', $request->phone);
+        $phone = "+234" . $phone_no;
+        $code = User::where('phone', $phone)->first()->code;
+        if ($code == $request->code) {
+            return response()->json([
+                'status' => true,
+                'message' => "Code Verified",
+            ], 200);
+        } else {
+
+            return response()->json([
+                'status' => false,
+                'message' => "Code invalid",
+            ], 422);
 
         }
 

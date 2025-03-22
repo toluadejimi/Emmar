@@ -78,6 +78,8 @@ class BankOneService
             $body = json_decode($response->getBody(), true);
             $status = $body['IsSuccessful'] ?? null;
 
+
+
             if($status == true){
 
                 $accs = new Account();
@@ -90,7 +92,19 @@ class BankOneService
                 $accs->account_type  = "Personal Account";
                 $accs->save();
 
-                return 1;
+
+                Log::info('Account Created', [
+                    'data' => $body,
+                    'user_info' => $data
+                ]);
+
+
+
+                $data['status'] = 1;
+                $data['account_no'] = $body['Message']['AccountNumber'];
+                return $data;
+
+
 
             }else{
 
@@ -99,8 +113,8 @@ class BankOneService
                     'data' => $body
                 ]);
 
-                $message = "Account Creation Failed ===>>>>" . $body['Message'] ?? 'No error message';
-                send_notification($message);
+//                $message = "Account Creation Failed ===>>>>" . $body['Message'] ?? 'No error message';
+//                send_notification($message);
 
             }
 
@@ -109,7 +123,9 @@ class BankOneService
         } catch (RequestException $e) {
             $message = $e->getMessage();
             send_notification($message);
-            return 0;
+            $data['status'] = 0;
+            $data['message'] = $e->getMessage();
+            return $data;
         }
     }
 

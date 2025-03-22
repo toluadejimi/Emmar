@@ -25,7 +25,7 @@ class TermiiService
             'from' => $this->senderId,
             'sms' => $message,
             'type' => 'plain', // Use 'plain' for normal SMS
-            'channel' => 'generic' // Options: dnd, whatsapp, generic
+            'channel' => 'dnd' // Options: dnd, whatsapp, generic
         ];
 
         $response = Http::post($this->baseUrl, $payload);
