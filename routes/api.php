@@ -31,6 +31,7 @@ Route::post('login', [LoginController::class, 'login']);
 Route::group(['middleware' => ['auth:api', 'acess']], function () {
 
     Route::post('get-banks', [TransferController::class, 'get_banks']);
+    Route::post('suggested-banks', [TransferController::class, 'suggested_banks']);
 
 
 

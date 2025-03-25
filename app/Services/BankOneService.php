@@ -186,7 +186,10 @@ class BankOneService
 
 
 //                    BankLogo::updateOrCreate(
-//                        ['name' => $bank['Name']]
+//                        [
+//                            'name' => $bank['Name'],
+//                            'code' => $bank['Code']
+//                        ]
 //                    );
 
 
