@@ -6,8 +6,10 @@ use App\Models\BusinessSetting;
 use App\Models\Terminal;
 use App\Models\Zone;
 use App\Services\AfricasTalkingService;
+use App\Services\BankOneService;
 use App\Services\TermiiService;
 use Illuminate\Support\Facades\Http;
+
 
 
 
@@ -399,9 +401,14 @@ function send_sms_termii($phone, $message)
 
 }
 
+
+
 function get_account($user_id){
 
     $account = Account::where('user_id', $user_id)->get()->makeHidden(['created_at', 'updated_at']);
+
+
+
     return $account;
 
 }
