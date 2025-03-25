@@ -193,7 +193,7 @@ class BankOneService
                     $banks[] = [
                         'code' => $bank['Code'],
                         'name' => $bank['Name'],
-                        'logo' => $bank_logo
+                        'logo' => url('')."/storage/app/public/bankslogo/".$bank_logo
                     ];
                 }
 
