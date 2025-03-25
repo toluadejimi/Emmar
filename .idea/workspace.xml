@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3585023b-e5bf-4ab9-8287-1463f1397fd4" name="Changes" comment="export terminal by  banks added">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/SingleLoginMiddleware.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Mobile/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Mobile/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Mobile/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Mobile/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/BankOneService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/BankOneService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/TermiiService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/TermiiService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../posy/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../posy/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../posy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../posy/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -411,6 +400,10 @@
       <TestRunner configuration_file="$PROJECT_DIR$/ETOP-MERCHANT/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
+    <configuration name="/Applications/XAMPP/xamppfiles/htdocs/project/enkpay-app/vendor/autoload.php" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -521,14 +514,7 @@
       <workItem from="1742208023569" duration="1358000" />
       <workItem from="1742312349706" duration="40560000" />
       <workItem from="1742639731314" duration="3717000" />
-    </task>
-    <task id="LOCAL-00082" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735639698012</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1735639698012</updated>
+      <workItem from="1742649286189" duration="1208000" />
     </task>
     <task id="LOCAL-00083" summary="export terminal by  banks added">
       <option name="closed" value="true" />
@@ -914,7 +900,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742398349282</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1742649369385</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1742649369386</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
