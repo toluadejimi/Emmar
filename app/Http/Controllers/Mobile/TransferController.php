@@ -42,7 +42,7 @@ class TransferController extends Controller
 
         $accountNumber = $request->account_number;
 
-        $ck_acc = RecentBankDetails::where('account_number', $accountNumber)->get()->makeHidden(['id', 'created_at', 'updated_at']) ?? null;
+        $ck_acc = RecentBankDetails::where('account_number', $accountNumber)->where('user_id', Auth::id())->get()->makeHidden(['id', 'created_at', 'updated_at', 'user_id']) ?? null;
         if ($ck_acc->isNotEmpty()) {
 
             foreach ($ck_acc as $bank) {
