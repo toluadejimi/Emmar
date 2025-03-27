@@ -7,6 +7,7 @@ use App\Models\BankLogo;
 use App\Models\RecentBankDetails;
 use App\Services\BankOneService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransferController extends Controller
 {
@@ -34,15 +35,14 @@ class TransferController extends Controller
     public function suggested_banks(request $request)
     {
 
-        $request->validate([
-            'account_number' => 'required|digits:10'
-        ]);
+//        $request->validate([
+//            'account_number' => 'required|digits:10'
+//        ]);
 
 
         $accountNumber = $request->account_number;
 
-
-        $ck_acc = RecentBankDetails::where('account_number', $accountNumber)->get()->makeHidden(['id','created_at', 'updated_at']) ?? null;
+        $ck_acc = RecentBankDetails::where('account_number', $accountNumber)->get()->makeHidden(['id', 'created_at', 'updated_at']) ?? null;
         if ($ck_acc->isNotEmpty()) {
 
             foreach ($ck_acc as $bank) {
@@ -87,6 +87,24 @@ class TransferController extends Controller
 
         }
 
+    }
+
+
+    public function recent_transfers(request $request)
+    {
+
+        $ck_acc = RecentBankDetails::latest()->where('user_id', Auth::id())->take('10')->get()->makeHidden(['id', 'user_id', 'created_at', 'updated_at']) ?? null;
+        if ($ck_acc->isNotEmpty()) {
+            foreach ($ck_acc as $bank) {
+                $bank->bank_logo = url('storage/app/public/bankslogo/' . $bank->bank_logo);
+            }
+
+            return response()->json([
+                'success' => true,
+                'data' => $ck_acc
+            ]);
+
+        }
     }
 
 

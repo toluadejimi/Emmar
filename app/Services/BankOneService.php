@@ -6,6 +6,7 @@ use App\Models\Account;
 use App\Models\BankLogo;
 use GuzzleHttp\Client;
 use Illuminate\Http\Client\RequestException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class BankOneService
@@ -214,5 +215,53 @@ class BankOneService
         }
     }
 
+
+
+    public function getTransactions(request $request)
+    {
+
+        try {
+            $response = $this->client->get($this->thirdpartybaseUrl . "BillsPayment/GetCommercialBanks/{$this->token}", [
+                'headers' => ['Accept' => 'application/json']
+            ]);
+
+            $data = json_decode($response->getBody(), true);
+
+            if (is_array($data)) {
+
+                foreach ($data as $bank) {
+
+                    $bank_logo = BankLogo::where('name', $bank['Name'])->value('url') ?? null;
+
+
+
+//                    BankLogo::updateOrCreate(
+//                        [
+//                            'name' => $bank['Name'],
+//                            'code' => $bank['Code']
+//                        ]
+//                    );
+
+
+                    $banks[] = [
+                        'code' => $bank['Code'],
+                        'name' => $bank['Name'],
+                        'logo' => url('')."/storage/app/public/bankslogo/".$bank_logo
+                    ];
+                }
+
+                return $banks;
+
+            }
+
+            return 0;
+
+
+        } catch (\Exception $e) {
+            $message = "Fetch Bank Balance Error ====>>>" . $e->getMessage();
+            send_notification($message);
+            return 0;
+        }
+    }
 
 }
