@@ -51,22 +51,19 @@ class LoginController extends Controller
 
 
            $account_no = Account::where('user_id', Auth::id())->get()->makeHidden(['created_at', 'updated_at']);
-
-            $account = [];
+            $all_account = [];
            foreach ($account_no as $data){
                $account = $data->account_number;
+               $all_account[] = $this->bankOneService->get_balance($account);
            }
 
-            $response = $this->bankOneService->get_balance($account);
 
 
 
 
             $usrr = User::where('id', Auth::id())->first()->makeHidden(['register_under_id', 'created_at','updated_at','session_id']);
             $usrr['token'] = $token;
-            $usrr['accounts'] = $response;
-
-
+            $usrr['accounts'] = $all_account;
 
 
             return response()->json([
