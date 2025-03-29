@@ -7,6 +7,7 @@ use App\Models\BankLogo;
 use GuzzleHttp\Client;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
 class BankOneService
@@ -182,7 +183,7 @@ class BankOneService
 
                 foreach ($data as $bank) {
 
-                     $bank_logo = BankLogo::where('name', $bank['Name'])->value('url') ?? null;
+                     $bank_logo = BankLogo::where('name', $bank['Name'])->value('logo') ?? null;
 
 
 
@@ -217,44 +218,61 @@ class BankOneService
 
 
 
-    public function getTransactions(request $request)
+    public function getTransactions($accountNumber, $from, $to)
     {
 
         try {
-            $response = $this->client->get($this->thirdpartybaseUrl . "BillsPayment/GetCommercialBanks/{$this->token}", [
-                'headers' => ['Accept' => 'application/json']
-            ]);
-
-            $data = json_decode($response->getBody(), true);
-
-            if (is_array($data)) {
-
-                foreach ($data as $bank) {
-
-                    $bank_logo = BankLogo::where('name', $bank['Name'])->value('url') ?? null;
 
 
+            if($from == null && $to == null){
+                $response = $this->client->get($this->baseUrl . "Account/GetTransactions/2/?authtoken={$this->token}&accountNumber=$accountNumber&numberOfItems=500", [
+                    'headers' => ['Accept' => 'application/json']
+                ]);
 
-//                    BankLogo::updateOrCreate(
-//                        [
-//                            'name' => $bank['Name'],
-//                            'code' => $bank['Code']
-//                        ]
-//                    );
+                $data = json_decode($response->getBody(), true);
+                $status = $data['IsSuccessful'] ?? null;
 
 
-                    $banks[] = [
-                        'code' => $bank['Code'],
-                        'name' => $bank['Name'],
-                        'logo' => url('')."/storage/app/public/bankslogo/".$bank_logo
-                    ];
-                }
+            }elseif($from != null && $to == null){
+                $from_date = $from;
+                $response = $this->client->get($this->baseUrl . "Account/GetTransactions/2/?authtoken={$this->token}&accountNumber=$accountNumber&fromDate=$from_date&numberOfItems=500", [
+                    'headers' => ['Accept' => 'application/json']
+                ]);
 
-                return $banks;
+                $data = json_decode($response->getBody(), true);
+                $status = $data['IsSuccessful'] ?? null;
 
+
+            }elseif($from != null && $to != null){
+
+                $from_date = $from;
+                $to_date = $to;
+
+                $response = $this->client->get($this->baseUrl . "Account/GetTransactions/2/?authtoken={$this->token}&accountNumber=$accountNumber&fromDate=$from_date&toDate=$to_date&numberOfItems=500", [
+                    'headers' => ['Accept' => 'application/json']
+                ]);
+
+                $data = json_decode($response->getBody(), true);
+                $status = $data['IsSuccessful'] ?? null;
             }
 
-            return 0;
+
+            if($status == true){
+                return[
+                    'status' => 2,
+                    'message' => $data['Message']
+                ];
+
+            }else{
+
+                $data2['status'] = 0;
+                $data2['message'] = $data['Message'] ?? "NA";
+                return $data2;
+            }
+
+
+
+
 
 
         } catch (\Exception $e) {
