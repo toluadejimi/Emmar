@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Mobile;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
 use App\Models\BankLogo;
 use App\Models\RecentBankDetails;
+use App\Models\Setting;
+use App\Models\User;
 use App\Services\BankOneService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,9 +38,6 @@ class TransferController extends Controller
     public function suggested_banks(request $request)
     {
 
-//        $request->validate([
-//            'account_number' => 'required|digits:10'
-//        ]);
 
 
         $accountNumber = $request->account_number;
@@ -68,7 +68,7 @@ class TransferController extends Controller
 
         if ($banks->isNotEmpty()) {
             foreach ($banks as $bank) {
-                $bank->url = url('storage/app/public/bankslogo/' . $bank->url);
+                $bank->logo = url('storage/app/public/bankslogo/' . $bank->logo);
             }
 
             return response()->json([
@@ -98,11 +98,75 @@ class TransferController extends Controller
             }
 
             return response()->json([
-                'success' => true,
+                'status' => true,
                 'data' => $ck_acc
             ]);
 
         }
+    }
+
+
+    public function initiate_transfer(request $request)
+    {
+
+
+        $can_transfer = User::where('id', Auth::id())->first()->can_transfer;
+        $account_tier = Account::where('user_id', Auth::id())->first()->account_tier;
+        $set = Setting::where('id', 1)->first();
+
+        if($set->bank_transfer == 0){
+            return response()->json([
+                'status' => false,
+                'message' => "You can not transfer at the moment, Please contact support"
+            ], 422);
+        }
+
+        if($can_transfer == 0){
+            return response()->json([
+                'status' => false,
+                'message' => "You have been banned from Bank Transfer, Please contact support"
+            ], 422);
+        }
+
+        if($account_tier == "Tier_1"){
+            $limit = $set->tier_1_limit;
+        }elseif($account_tier == "Tier_2")
+            $limit = $set->tier_2_limit;
+        else{
+            $limit = $set->tier_3_limit;
+        }
+
+
+        if($request->amount > $limit){
+            return response()->json([
+                'status' => false,
+                'message' => "Upgrade your account to transfer more, Please contact support"
+            ], 422);
+        }
+
+
+
+
+        $data = [
+            'TransactionTrackingRef' => $TransactionTrackingRef,
+            'AccountOpeningTrackingRef' => $TransactionTrackingRef,
+            'ProductCode' => '101',
+            'LastName' => $user->last_name,
+            'FirstName' => $user->first_name,
+            'OtherNames' => $user->other_name,
+            'BVN' => $user->bvn,
+            'PhoneNo' => $user->phone_no,
+            'Gender' => $user->gender,
+            'DateOfBirth' => $user->dob,
+            'Email' => $user->email,
+            'AccountTier' => '1',
+            'AccountOfficerCode' => '003',
+        ];
+
+        $response = $this->bankOneService->createAccount($data, $user_id);
+
+
+
     }
 
 
