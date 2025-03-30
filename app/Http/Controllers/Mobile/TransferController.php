@@ -170,4 +170,33 @@ class TransferController extends Controller
     }
 
 
+
+    public function name_inquary(request $request)
+    {
+
+        $account_no = $request->accountNumber;
+        $code = $request->bankCode;
+
+        $response = $this->bankOneService->name_enquiry($code, $account_no);
+
+
+        if($response['codes'] == 0){
+
+            return response()->json([
+                'status' => false,
+                'message' => $response['message']
+            ],422);
+
+        }else{
+
+            return response()->json([
+                'status' => true,
+                'name' => $response['name']
+            ]);
+        }
+
+
+    }
+
+
 }

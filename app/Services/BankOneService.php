@@ -218,6 +218,48 @@ class BankOneService
 
 
 
+    public function name_enquiry($code, $account_no){
+
+        try {
+            $response = $this->client->post($this->thirdpartybaseUrl . "Transfer/NameEnquiry", [
+                'json' => [
+                    'AccountNumber' => $account_no,
+                    'Token' => $this->token,
+                    'BankCode' => $code
+                ],
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json'
+                ]
+            ]);
+
+            $data = json_decode($response->getBody(), true);
+
+
+            if ($data['Name'] != null) {
+
+                return [
+                    'codes' => 1,
+                    'name' => $data['Name']
+                ];
+
+            }
+
+            return [
+                'codes' => 0,
+                'message' => $data['ResponseMessage']
+            ];
+
+        } catch  (\Exception $e) {
+            $message = "Name Inquiry  Error ====>>>" . $e->getMessage();
+            send_notification($message);
+            return 0;
+        }
+
+
+
+    }
+
     public function getTransactions($accountNumber, $from, $to)
     {
 

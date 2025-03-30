@@ -1,14 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\BankController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\TerminalController;
-use App\Http\Controllers\Admin\TransactionController;
-use App\Http\Controllers\Admin\UserController;
+
 use App\Http\Controllers\Mobile\Auth\LoginController;
 use App\Http\Controllers\Mobile\Auth\RegisterController;
 use App\Http\Controllers\Mobile\Face\FaceRecognitionController;
+use App\Http\Controllers\Mobile\TransactionController;
 use App\Http\Controllers\Mobile\TransferController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +20,7 @@ Route::post('set-pin', [RegisterController::class, 'set_pin']);
 Route::post('verify-face', [FaceRecognitionController::class, 'compareFaces']);
 Route::post('verify-code', [RegisterController::class, 'verify_code']);
 Route::post('login', [LoginController::class, 'login']);
+Route::post('name-enquiry', [TransferController::class, 'name_inquary']);
 
 
 
@@ -33,6 +30,11 @@ Route::group(['middleware' => ['auth:api', 'acess']], function () {
     Route::post('get-banks', [TransferController::class, 'get_banks']);
     Route::post('suggested-banks', [TransferController::class, 'suggested_banks']);
     Route::post('recent-transfer', [TransferController::class, 'recent_transfers']);
+
+
+    //Transactions
+    Route::post('transaction-history', [TransactionController::class, 'get_transaction']);
+    Route::post('get-date', [TransactionController::class, 'get_transaction_by_date']);
 
 
 
