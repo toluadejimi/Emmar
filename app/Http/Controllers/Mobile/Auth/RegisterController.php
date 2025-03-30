@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Services\BankOneService;
 use App\Services\TermiiService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -300,7 +301,7 @@ class RegisterController extends Controller
         $phone_no = preg_replace('/^\[?0\]?/', '', $request->phone);
         $phone = "+234" . $phone_no;
         $usr = User::where('phone', $phone)->update([
-            'password' => bcrypt($request->password),
+            'pin' => Hash::make($request->pin),
         ]);
 
         if ($usr) {

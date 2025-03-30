@@ -128,6 +128,55 @@ class BankOneService
     }
 
 
+    public function initiate_bank_transfer($data)
+    {
+        try {
+            $data_sent = $data;
+            $data_sent['Token'] = $this->token;
+            $response = $this->client->post($this->thirdpartybaseUrl . "Transfer/InterBankTransfer", [
+                'json' => $data_sent,
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                ],
+            ]);
+
+            $body = json_decode($response->getBody(), true);
+            $status =  true; //$body['IsSuccessful'] ?? null;
+
+
+
+            if ($status == true) {
+
+                return [
+                    'Status' => true,
+                    'SessionID' => $body['SessionID'] ?? "10000000000000",
+                ];
+
+            } else {
+
+                $message = "Bank Transfer Failed ===>>>>" . json_encode($body) ?? 'No error message';
+                send_notification($message);
+
+                return [
+                    'Status' => false,
+                    'Message' => $body['ResponseMessage'],
+                ];
+
+
+            }
+
+
+        } catch (RequestException $e) {
+            $message = $e->getMessage();
+            send_notification($message);
+            $data['status'] = 0;
+            $data['message'] = $e->getMessage();
+            return $data;
+        }
+    }
+
+
     public function get_balance($account)
     {
         try {

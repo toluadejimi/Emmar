@@ -59,8 +59,6 @@ class LoginController extends Controller
 
 
 
-
-
             $usrr = User::where('id', Auth::id())->first()->makeHidden(['register_under_id', 'created_at','updated_at','session_id']);
             $usrr['token'] = $token;
             $usrr['accounts'] = $all_account;
