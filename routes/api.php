@@ -31,6 +31,8 @@ Route::group(['middleware' => ['auth:api', 'acess']], function () {
     Route::post('suggested-banks', [TransferController::class, 'suggested_banks']);
     Route::post('recent-transfer', [TransferController::class, 'recent_transfers']);
     Route::post('initiate-bank-transfer', [TransferController::class, 'initiate_transfer']);
+    Route::post('verify-pin', [TransferController::class, 'verify_pin']);
+    Route::post('get-charges', [TransferController::class, 'get_fees']);
     Route::get('get-account', [TransferController::class, 'get_account']);
 
 

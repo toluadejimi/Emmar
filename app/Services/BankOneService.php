@@ -193,7 +193,6 @@ class BankOneService
 
             $data = json_decode($response->getBody(), true) ?? null;
 
-
             if ($data !== null) {
                 return [
                     'account_number' => $account,

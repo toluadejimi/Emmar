@@ -167,12 +167,7 @@ class TransferController extends Controller
         }
 
 
-        if (Hash::check($pin, $user_pin) == false) {
-            return response()->json([
-                'status' => false,
-                'message' => "Incorrect Pin"
-            ], 422);
-        }
+
 
         if ($can_transfer == 0) {
             return response()->json([
@@ -314,6 +309,53 @@ class TransferController extends Controller
                 'name' => $response['name']
             ]);
         }
+
+
+    }
+
+    public function verify_pin(request $request)
+    {
+
+        $user_pin = User::where('id', Auth::id())->first()->pin;
+        $pin = $request->pin;
+
+        if (Hash::check($pin, $user_pin) == false) {
+            return response()->json([
+                'status' => false,
+                'message' => "Incorrect Pin"
+            ], 422);
+        }
+
+
+        return response()->json([
+            'status' => true,
+            'message' => "Pin correct"
+        ], 200);
+
+
+    }
+
+
+    public function get_fees(request $request)
+    {
+
+        $type = $request->type;
+        $set = Setting::where('id', 1)->first();
+        if($type == "interbank"){
+            return response()->json([
+                'status' => true,
+                'fee' => $set->transfer_charges ?? 0
+            ], 200);
+        }elseif($type == "cable"){
+
+            return response()->json([
+                'status' => true,
+                'fee' => $set->cable_charges ?? 0
+            ], 200);
+        }
+
+
+
 
 
     }
