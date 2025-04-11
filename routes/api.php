@@ -10,6 +10,9 @@ use App\Http\Controllers\Mobile\TransferController;
 use Illuminate\Support\Facades\Route;
 
 
+Route::post('notification', [TransactionController::class, 'notification']);
+
+
 
 Route::post('verify-phone', [RegisterController::class, 'verify_phone_number']);
 Route::post('verify-bvn', [RegisterController::class, 'verifyBvn']);
