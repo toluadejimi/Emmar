@@ -307,7 +307,8 @@ class TransferController extends Controller
 
             return response()->json([
                 'status' => true,
-                'name' => $response['name']
+                'name' => $response['name'],
+                'session_id' => $response['session_id']
             ]);
         }
 
