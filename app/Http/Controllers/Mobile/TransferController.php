@@ -146,9 +146,7 @@ class TransferController extends Controller
         $account_tier = Account::where('user_id', Auth::id())->first()->account_tier;
         $set = Setting::where('id', 1)->first();
         $get_balance = $this->bankOneService->get_balance($sender_account_no);
-        $get_bank_one_balance = $get_balance['availabe_balance'];
-        $cleaned = str_replace(',', '', $get_bank_one_balance);
-        $balance = (int) $cleaned;
+        $balance = $get_balance['availabe_balance'];
         $user_pin = User::where('id', Auth::id())->first()->pin;
 
 
