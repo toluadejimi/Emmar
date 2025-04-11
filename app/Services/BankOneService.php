@@ -339,6 +339,9 @@ class BankOneService
             $data = json_decode($response->getBody(), true);
 
 
+            dd($data);
+
+
             if ($data['Name'] != null) {
 
                 return [
