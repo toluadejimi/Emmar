@@ -87,6 +87,7 @@ class RegisterController extends Controller
                 'status' => true,
                 'first_name' => $response['first_name'],
                 'last_name' => $response['last_name'],
+                'other_name' => $response['other_name'],
                 'bvn' => $response['bvn'],
                 'dob' => $response['dob'],
             ], 200);
@@ -320,7 +321,7 @@ class RegisterController extends Controller
                 'ProductCode' => '101',
                 'LastName' => $user->last_name,
                 'FirstName' => $user->first_name,
-                'OtherNames' => $user->first_name,
+                'OtherNames' => $user->other_name,
                 'BVN' => $user->bvn,
                 'PhoneNo' => $user->phone_no,
                 'Gender' => $user->gender,
