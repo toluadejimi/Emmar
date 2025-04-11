@@ -320,7 +320,7 @@ class RegisterController extends Controller
                 'ProductCode' => '101',
                 'LastName' => $user->last_name,
                 'FirstName' => $user->first_name,
-                'OtherNames' => $user->other_name,
+                'OtherNames' => $user->first_name,
                 'BVN' => $user->bvn,
                 'PhoneNo' => $user->phone_no,
                 'Gender' => $user->gender,
@@ -347,8 +347,6 @@ class RegisterController extends Controller
                     $smsService = new TermiiService();
                     $send_sms = send_sms_termii($phone, $message);
                 }
-
-
 
                 return response()->json([
                     'status' => true,
