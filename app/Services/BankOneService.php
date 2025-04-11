@@ -53,9 +53,14 @@ class BankOneService
                     'dob' => $data['bvnDetails']['DOB'],
                 ];
 
+            }else{
+
+                $message = "BVN FETCHING ERROR ====>>>" . json_encode($data);
+                send_notification($message);
+                return 0;
+
             }
 
-            return 0;
 
         } catch (\Exception $e) {
 
