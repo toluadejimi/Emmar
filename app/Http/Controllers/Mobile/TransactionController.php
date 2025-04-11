@@ -18,9 +18,6 @@ class TransactionController extends Controller
    public function get_transaction(request $request)
    {
 
-
-
-
        $accountNumber = $request->account_number;
        $from = $request->from;
        $to = $request->to;
