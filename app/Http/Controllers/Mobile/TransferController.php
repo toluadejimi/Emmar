@@ -309,7 +309,9 @@ class TransferController extends Controller
             return response()->json([
                 'status' => true,
                 'name' => $response['name'],
-                'session_id' => $response['session_id']
+                'session_id' => $response['session_id'],
+                'BVN' => $response['BVN'],
+                'KYC' => $response['KYC']
             ]);
         }
 

@@ -345,7 +345,9 @@ class BankOneService
                 return [
                     'codes' => 1,
                     'name' => $data['Name'],
-                    'session_id' => $data['SessionID']
+                    'session_id' => $data['SessionID'],
+                    'BVN' => $data['BVN'],
+                    'KYC' => $data['KYC']
                 ];
 
             }
