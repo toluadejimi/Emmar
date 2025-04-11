@@ -112,13 +112,9 @@ class BankOneService
 
             } else {
 
-                Log::error('Account Creation Failed', [
-                    'error_message' => $body['Message'] ?? 'No error message',
-                    'data' => $body
-                ]);
 
-//                $message = "Account Creation Failed ===>>>>" . $body['Message'] ?? 'No error message';
-//                send_notification($message);
+                $message = "Account Creation Failed ===>>>>\n\n" . json_encode($body) . "\n\n Request =>>>>>" . json_encode($data);
+                send_notification($message);
 
             }
 
