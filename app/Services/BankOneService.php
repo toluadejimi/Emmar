@@ -339,14 +339,13 @@ class BankOneService
             $data = json_decode($response->getBody(), true);
 
 
-            dd($data);
-
 
             if ($data['Name'] != null) {
 
                 return [
                     'codes' => 1,
-                    'name' => $data['Name']
+                    'name' => $data['Name'],
+                    'session_id' => $data['SessionID']
                 ];
 
             }
