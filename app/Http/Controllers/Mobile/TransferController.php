@@ -201,6 +201,7 @@ class TransferController extends Controller
             'ReceiverAccountNumber' => $receiver_account_no,
             'ReceiverName' => $receiver_name,
             'TransactionReference' => $trxref,
+            'Narration' => $request->narattion ?? "Trf to " . "$receiver_name",
         ];
 
         $response = $this->bankOneService->initiate_bank_transfer($data);
