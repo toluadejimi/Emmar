@@ -327,7 +327,7 @@ class RegisterController extends Controller
                 'DateOfBirth' => $user->dob,
                 'Email' => $user->email,
                 'AccountTier' => '1',
-                'AccountOfficerCode' => '003',
+                'AccountOfficerCode' => '10028',
             ];
 
             $response = $this->bankOneService->createAccount($data, $user_id);
