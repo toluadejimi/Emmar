@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Mobile\Auth\LoginController;
 use App\Http\Controllers\Mobile\Auth\RegisterController;
+use App\Http\Controllers\Mobile\BillsController;
 use App\Http\Controllers\Mobile\Face\FaceRecognitionController;
 use App\Http\Controllers\Mobile\TransactionController;
 use App\Http\Controllers\Mobile\TransferController;
@@ -25,6 +26,20 @@ Route::post('name-enquiry', [TransferController::class, 'name_inquary']);
 
 
 
+Route::get('get-airtime-biller', [BillsController::class, 'get_airtime_biller']);
+Route::get('get-data-biller', [BillsController::class, 'get_data_biller']);
+Route::get('get-cable-biller', [BillsController::class, 'get_cable_biller']);
+Route::get('get-exams-biller', [BillsController::class, 'get_education_biller']);
+Route::get('get-waste-biller', [BillsController::class, 'get_waste_biller']);
+Route::get('get-electric-biller', [BillsController::class, 'get_electric_biller']);
+Route::get('get-betting-biller', [BillsController::class, 'get_betting_biller']);
+Route::get('get-associations-society-biller', [BillsController::class, 'get_associations_society']);
+Route::get('get-tax-biller', [BillsController::class, 'get_tax_biller']);
+Route::get('get-insurance-biller', [BillsController::class, 'get_insurance_biller']);
+Route::get('get-ticket-biller', [BillsController::class, 'get_ticket_biller']);
+
+
+
 Route::group(['middleware' => ['auth:api', 'acess']], function () {
 
     Route::post('get-banks', [TransferController::class, 'get_banks']);
@@ -39,6 +54,13 @@ Route::group(['middleware' => ['auth:api', 'acess']], function () {
     //Transactions
     Route::post('transaction-history', [TransactionController::class, 'get_transaction']);
     Route::post('get-date', [TransactionController::class, 'get_transaction_by_date']);
+
+
+    //Buy Airtime
+    Route::post('buy-airtime', [BillsController::class, 'buy_airtime']);
+
+
+
 
 
 

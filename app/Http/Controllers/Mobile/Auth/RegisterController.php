@@ -381,7 +381,7 @@ class RegisterController extends Controller
 
 
         $set = Setting::where('id', 1)->first();
-        $code = random_int(0000, 9999);
+        $code = str_pad(random_int(0, 9999), 4, '0', STR_PAD_LEFT);
         $phone_no = preg_replace('/^\[?0\]?/', '', $request->phone);
         $phone = "+234" . $phone_no;
 
@@ -390,12 +390,15 @@ class RegisterController extends Controller
         $check_phone = User::where('phone', $phone)->first() ?? null;
         if ($check_phone->is_phone_verified == 1) {
 
+
             return response()->json([
                 'status' => false,
                 'message' => "Phone number already exist"
             ], 422);
 
         } elseif ($check_phone->is_phone_verified == 0) {
+
+
 
             $message = "Your Verification Code is $code";
             if ($set->sms_provider == "africa") {
@@ -420,10 +423,15 @@ class RegisterController extends Controller
                 $smsService = new TermiiService();
                 $response = $smsService->sendSms($phone, $message);
 
+                if (!isset($response['code']) || $response['code'] !== 'ok') {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'SMS failed to send. Invalid response.',
+                        'response' => $response
+                    ], 500);
+                }
+
                 return response()->json($response);
-
-
-                $send_sms = send_sms_termii($phone, $message);
 
 
             }
@@ -462,11 +470,15 @@ class RegisterController extends Controller
                     $smsService = new TermiiService();
                     $response = $smsService->sendSms($phone, $message);
 
+                    if (!isset($response['code']) || $response['code'] !== 'ok') {
+                        return response()->json([
+                            'status' => false,
+                            'message' => 'SMS failed to send. Invalid response.',
+                            'response' => $response
+                        ], 500);
+                    }
+
                     return response()->json($response);
-
-
-                    $send_sms = send_sms_termii($phone, $message);
-
 
                 }
 

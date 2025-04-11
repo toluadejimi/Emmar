@@ -151,12 +151,12 @@ class TransferController extends Controller
 
 
         $final_tranferaable_amount = $request->Amount + $set->transfer_charges;
-//        if($balance < $final_tranferaable_amount){
-//            return response()->json([
-//                'status' => false,
-//                'message' => "Insufficient Funds"
-//            ], 422);
-//        }
+        if($balance < $final_tranferaable_amount){
+            return response()->json([
+                'status' => false,
+                'message' => "Insufficient Funds"
+            ], 422);
+        }
 
 
         if ($set->bank_transfer == 0) {
@@ -359,6 +359,166 @@ class TransferController extends Controller
 
 
     }
+
+
+    public function local_transfer(request $request)
+    {
+
+        $amount = $request->Amount * 100;
+        $sender_account_no = $request->senderAccountNo;
+        $sender_name = $request->senderName;
+        $bank_code = $request->bankCode;
+        $receiver_account_no = $request->receiverAccountNo;
+        $receiver_name = $request->receiverName;
+        $receiver_bank_name = $request->receiverBankName;
+        $pin = $request->pin;
+        $trxref = "ER" . date('dmhis');
+
+
+        $can_transfer = User::where('id', Auth::id())->first()->can_transfer;
+        $account_tier = Account::where('user_id', Auth::id())->first()->account_tier;
+        $set = Setting::where('id', 1)->first();
+        $get_balance = $this->bankOneService->get_balance($sender_account_no);
+        $balance = $get_balance['availabe_balance'];
+        $user_pin = User::where('id', Auth::id())->first()->pin;
+
+
+        $final_tranferaable_amount = $request->Amount + $set->transfer_charges;
+//        if($balance < $final_tranferaable_amount){
+//            return response()->json([
+//                'status' => false,
+//                'message' => "Insufficient Funds"
+//            ], 422);
+//        }
+
+
+        if ($set->bank_transfer == 0) {
+            return response()->json([
+                'status' => false,
+                'message' => "You can not transfer at the moment, Please contact support"
+            ], 422);
+        }
+
+
+
+
+        if ($can_transfer == 0) {
+            return response()->json([
+                'status' => false,
+                'message' => "You have been banned from Bank Transfer, Please contact support"
+            ], 422);
+        }
+
+        if ($account_tier == "Tier_1") {
+            $limit = $set->tier_1_limit;
+        } elseif ($account_tier == "Tier_2")
+            $limit = $set->tier_2_limit;
+        else {
+            $limit = $set->tier_3_limit;
+        }
+
+
+        if ($request->amount > $limit) {
+            return response()->json([
+                'status' => false,
+                'message' => "Upgrade your account to transfer more, Please contact support"
+            ], 422);
+        }
+
+
+        $data = [
+            'Amount' => $amount,
+            'PayerAccountNumber' => $sender_account_no,
+            'Payer' => $sender_name,
+            'ReceiverBankCode' => $bank_code,
+            'ReceiverAccountNumber' => $receiver_account_no,
+            'ReceiverName' => $receiver_name,
+            'TransactionReference' => $trxref,
+        ];
+
+        $response = $this->bankOneService->initiate_bank_transfer($data);
+
+
+        $status = $response['Status'] ?? null;
+
+
+        if ($status == true ) {
+
+            $trx = new Transaction();
+            $trx->trx_ref = $trxref;
+            $trx->user_id = Auth::id();
+            $trx->receiver_bank_code = $bank_code;
+            $trx->receiver_bank_name = $receiver_bank_name;
+            $trx->receiver_account_no = $receiver_account_no;
+            $trx->receiver_name = $receiver_name;
+            $trx->sender_name = $sender_name;
+            $trx->transaction_type = "Bank_Transfer";
+            $trx->note = "Transaction successful";
+            $trx->session_id = $response['SessionID'];
+            $trx->sender_account_no = $sender_account_no;
+            $trx->fees = $set->transfer_charges;
+            $trx->debit = $final_tranferaable_amount;
+            $trx->amount = $request->Amount;
+            $trx->status = 1;
+            $trx->save();
+
+
+            $bank_logo = BankLogo::where('name', $receiver_bank_name)->first()->logo ?? null;
+            $rec = new RecentBankDetails();
+            $rec->user_id = Auth::id();
+            $rec->account_number = $receiver_account_no;
+            $rec->account_name = $receiver_name;
+            $rec->bank_code = $bank_code;
+            $rec->bank_logo = $bank_logo;
+            $rec->bank_name = $receiver_bank_name;
+            $rec->save();
+
+
+            return response()->json([
+                'status' => true,
+                'message' => "Transaction Successful"
+            ], 422);
+
+
+        } elseif ($status == false ) {
+
+            $trx = new Transaction();
+            $trx->trx_ref = $trxref;
+            $trx->user_id = Auth::id();
+            $trx->receiver_bank_code = $bank_code;
+            $trx->receiver_bank_name = $receiver_bank_name;
+            $trx->receiver_account_no = $receiver_account_no;
+            $trx->receiver_name = $receiver_name;
+            $trx->sender_name = $sender_name;
+            $trx->transaction_type = "Bank_Transfer";
+            $trx->note = $response['ResponseMessage'];
+            $trx->sender_account_no = $sender_account_no;
+            $trx->fees = 0;
+            $trx->debit = $final_tranferaable_amount;
+            $trx->amount = $request->Amount;
+            $trx->status = 3;
+            $trx->save();
+
+            return response()->json([
+                'status' => false,
+                'message' => "Transaction Failed"
+            ], 422);
+
+
+        } else {
+
+            return response()->json([
+                'status' => false,
+                'message' => "Something went wrong"
+            ], 422);
+
+
+        }
+
+
+    }
+
+
 
 
 }
