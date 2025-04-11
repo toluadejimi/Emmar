@@ -158,7 +158,7 @@ class BankOneService
 
             } else {
 
-                $message = "Bank Transfer Failed ===>>>>" . json_encode($body) ?? 'No error message';
+                $message = "Bank Transfer Failed ===>>>>" . json_encode($body) ?? 'No error message' ." \n\n Request=====> ".json_encode($data_sent);
                 send_notification($message);
 
                 return [
