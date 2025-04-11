@@ -151,9 +151,6 @@ class TransferController extends Controller
 
 
         $final_tranferaable_amount = $request->Amount + $set->transfer_charges;
-
-        dd($final_tranferaable_amount, $request->Amount, $set->transfer_charges, $balance);
-
         if((int)$balance < $final_tranferaable_amount){
             return response()->json([
                 'status' => false,
