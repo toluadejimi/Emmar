@@ -396,8 +396,6 @@ function send_sms_termii($phone, $message)
     $smsService = new TermiiService();
     $response = $smsService->sendSms($phone, $message);
 
-    dd($response);
-
     return response()->json($response);
 
 
