@@ -242,10 +242,20 @@ class BankOneService
             $data = json_decode($response->getBody(), true) ?? null;
 
             if ($data !== null) {
+
+                $cleaned_availabe = str_replace(',', '', $data['AvailableBalance']);
+                $avilable_balance = (int)$cleaned_availabe;
+
+                $legder_availabe = str_replace(',', '', $data['LedgerBalance']);
+                $ledger_balance = (int)$legder_availabe;
+
+
+                dd($avilable_balance);
+
                 return [
                     'account_number' => $account,
-                    'availabe_balance' => $data['AvailableBalance'] ?? 'N/A',
-                    'ledger_balance' => $data['LedgerBalance'] ?? 'N/A',
+                    'availabe_balance' => $avilable_balance ?? 'N/A',
+                    'ledger_balance' => $ledger_balance ?? 'N/A',
                     'withdrawable_balance' => $data['WithdrawableBalance'] ?? 'N/A',
                     'account_type' => $data['AccountType'] ?? 'N/A'
                 ];
