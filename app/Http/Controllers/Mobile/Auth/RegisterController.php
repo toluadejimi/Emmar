@@ -88,8 +88,8 @@ class RegisterController extends Controller
                 'first_name' => $response['first_name'],
                 'last_name' => $response['last_name'],
                 'other_name' => $response['other_name'],
-                'bvn' => $response['bvn'],
                 'dob' => $response['dob'],
+                'bvn' => $response['bvn'],
             ], 200);
 
         } else {
