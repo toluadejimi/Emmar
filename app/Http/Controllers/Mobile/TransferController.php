@@ -146,11 +146,11 @@ class TransferController extends Controller
         $account_tier = Account::where('user_id', Auth::id())->first()->account_tier;
         $set = Setting::where('id', 1)->first();
         $get_balance = $this->bankOneService->get_balance($sender_account_no);
-        $balance = (int)$get_balance['availabe_balance'];
+        $balance = $get_balance['availabe_balance'];
         $user_pin = User::where('id', Auth::id())->first()->pin;
 
 
-        $final_tranferaable_amount = (int)$request->Amount + $set->transfer_charges;
+        $final_tranferaable_amount = $request->Amount + $set->transfer_charges;
 
         dd($final_tranferaable_amount, $request->Amount, $set->transfer_charges, $balance);
 
