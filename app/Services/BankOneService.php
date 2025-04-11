@@ -49,7 +49,7 @@ class BankOneService
                     'phone' => $data['bvnDetails']['phoneNumber'],
                     'first_name' => $data['bvnDetails']['FirstName'],
                     'last_name' => $data['bvnDetails']['LastName'],
-                    'other_names' => $data['bvnDetails']['OtherNames'],
+                    'other_name' => $data['bvnDetails']['OtherNames'],
                     'dob' => $data['bvnDetails']['DOB'],
                 ];
 
