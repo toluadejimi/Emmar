@@ -88,11 +88,6 @@ class VTPassService
 
 
 
-            return response()->json([
-
-
-            ], 200);
-
         } catch (\Exception$th) {
             return $th->getMessage();
         }
