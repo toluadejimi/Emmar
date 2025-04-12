@@ -223,6 +223,55 @@ class BankOneService
             return $data;
         }
     }
+    public function initiate_customer_debit($data)
+    {
+        try {
+            $data_sent = $data;
+            $data_sent['Token'] = $this->token;
+            $data_sent['GLCode'] = env("GLCODE");
+            $response = $this->client->post($this->thirdpartybaseUrl . "apiservice/CoreTransactions/Debit", [
+                'json' => $data_sent,
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                ],
+            ]);
+
+            $body = json_decode($response->getBody(), true);
+            $status =  $body['IsSuccessful'] ?? null;
+
+
+
+            if ($status == true) {
+
+                return [
+                    'Status' => true,
+                    'ResponseCode' => $body['ResponseCode'],
+                    'Reference' => $body['Reference'],
+                ];
+
+            } else {
+
+                $message = "Bank Transfer Failed ===>>>>" . json_encode($body) ?? 'No error message';
+                send_notification($message);
+
+                return [
+                    'Status' => false,
+                    'Message' => $body['ResponseMessage'],
+                ];
+
+
+            }
+
+
+        } catch (RequestException $e) {
+            $message = $e->getMessage();
+            send_notification($message);
+            $data['status'] = 0;
+            $data['message'] = $e->getMessage();
+            return $data;
+        }
+    }
 
 
     public function get_balance($account)

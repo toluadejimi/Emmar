@@ -7,6 +7,7 @@ use App\Models\Account;
 use App\Models\Setting;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Services\BankOneService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -15,12 +16,20 @@ class AirtimeController extends Controller
 {
 
 
+    protected $bankOneService;
+
+    public function __construct(BankOneService $bankOneService)
+    {
+        $this->bankOneService = $bankOneService;
+    }
+
+
     public function get_airtime_biller()
     {
 
         $set = Setting::where('id', 1)->first();
         if($set->bills_provider == "vt_pass"){
-          
+
                 $vt_pass_mobile_biller = ['mtn', 'glo', 'airtel', 'etisalat', 'international'];
                 return response()->json([
                     'status' => true,
@@ -108,42 +117,45 @@ class AirtimeController extends Controller
 
             //Deduction
 
+            $data = [
+                'Amount' => $amount * 100,
+                'PayerAccountNumber' => $sender_account_no,
+                'TransactionReference' => $trxref,
+                'Narration' => "Debit for Airtime",
+            ];
+
+            $response = $this->bankOneService->initiate_customer_debit($data);
+
+            if($response['ResponseCode'] == "00"){
+                $response = $this->callVTPassApi($requestId, $request->service_id, $amount, $request->phone, $apiKey, $skKey);
+                send_notification("VAS AIRTIME Response: " . json_encode($response));
+                if ($response->response_description === 'TRANSACTION SUCCESSFUL') {
 
 
-            $response = $this->callVTPassApi($requestId, $request->service_id, $amount, $request->phone, $apiKey, $skKey);
-            send_notification("VAS AIRTIME Response: " . json_encode($response));
-
-            if ($response->response_description === 'TRANSACTION SUCCESSFUL') {
-
-
-                $trx = new Transaction();
-                $trx->trx_ref = $trxref;
-                $trx->user_id = Auth::id();
-                $trx->transaction_type = "VAS";
-                $trx->note = "Transaction successful";
-                $trx->session_id = $response['SessionID'];
-                $trx->sender_account_no = $sender_account_no;
-                $trx->fees = $set->transfer_charges;
-                $trx->debit = $final_tranferaable_amount;
-                $trx->amount = $request->Amount;
-                $trx->status = 1;
-                $trx->save();
+                    $trx = new Transaction();
+                    $trx->trx_ref = $trxref;
+                    $trx->user_id = Auth::id();
+                    $trx->transaction_type = "VAS";
+                    $trx->note = "Transaction successful";
+                    $trx->session_id = $response['Reference'];
+                    $trx->sender_account_no = $sender_account_no;
+                    $trx->fees = $set->transfer_charges;
+                    $trx->debit = $final_tranferaable_amount;
+                    $trx->amount = $request->Amount;
+                    $trx->status = 1;
+                    $trx->save();
 
 
-
-
-                return response()->json([
-                    'status' => $this->success,
-                    'message' => 'Airtime Purchase Successful',
-                ]);
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Airtime Purchase Successful',
+                    ]);
+                }
             }
 
-            // Refund if failed
-            User::where('id', $user->id)->increment('main_wallet', $amount);
-
             return response()->json([
-                'status' => $this->failed,
-                'message' => "Service unavailable, NGN $amount has been refunded to your wallet.",
+                'status' => false,
+                'message' => "Airtime Purchase failed.",
             ], 200);
 
         } catch (\Exception $e) {
