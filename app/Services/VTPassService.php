@@ -71,7 +71,7 @@ class VTPassService
             $biller = $var->content->WrongBillersCode ?? null;
 
 
-            dd($var, $biller);
+            json_encode($var, $biller);
 
             if($biller == false){
                 return [
