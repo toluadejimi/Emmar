@@ -76,6 +76,11 @@ class VTPassService
                     'Meter_Number' => $var->content->Meter_Number,
                     'Address' => $var->content->Address,
                     'Meter_Type' => $var->content->Meter_Type,
+                    'status' => 1
+                ];
+            }else{
+                return [
+                    'status' => 0
                 ];
             }
 
