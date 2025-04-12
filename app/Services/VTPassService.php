@@ -39,14 +39,13 @@ class VTPassService
 
             ];
         }else{
+
             send_notification("VAS  Response: ====>>> \n\n" . json_encode($var));
             return [
                 'status' => false
             ];
         }
 
-
-        return json_decode($response, true);
     }
 
     public function Validate($biller_code, $service_id){
