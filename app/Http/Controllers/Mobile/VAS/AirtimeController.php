@@ -47,7 +47,7 @@ class AirtimeController extends Controller
     public function buy_airtime(Request $request)
     {
 
-        $trxref = "VAS" . date('dmhis');
+        $referenceCode = "EMRVAS-" . random_int(1000000, 999999999);
         $sender_account_no = $request->senderAccountNo;
         $amount = $request->Amount;
 
@@ -101,7 +101,6 @@ class AirtimeController extends Controller
             $apiKey = env('VTPASSAPIKEY');
             $skKey = env('VTPASSSKKEY');
             $requestId = date('YmdHis') . Str::random(4);
-            $referenceCode = "EMRVAS-" . random_int(1000000, 999999999);
 
 
             //Deduction
@@ -122,7 +121,7 @@ class AirtimeController extends Controller
 
 
                     $trx = new Transaction();
-                    $trx->trx_ref = $trxref;
+                    $trx->trx_ref = $referenceCode;
                     $trx->user_id = Auth::id();
                     $trx->transaction_type = "VAS";
                     $trx->note = "Transaction successful";

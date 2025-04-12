@@ -67,7 +67,7 @@ Route::group(['middleware' => ['auth:api', 'acess']], function () {
 
 
     //Buy Airtime
-    Route::post('buy-airtime', [BillsController::class, 'buy_airtime']);
+    Route::post('buy-airtime', [AirtimeController::class, 'buy_airtime']);
 
 
 
