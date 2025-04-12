@@ -4,10 +4,19 @@ namespace App\Http\Controllers\Mobile\VAS;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Services\VTPassService;
 use Illuminate\Http\Request;
 
 class CableController extends Controller
 {
+
+    protected $VTpass;
+
+    public function __construct(VTPassService $VTpass)
+    {
+        $this->VTpass = $VTpass;
+    }
+
     public function get_cable_biller()
     {
 
@@ -54,4 +63,37 @@ class CableController extends Controller
         }
 
     }
+
+
+    public function validate_cable(request $request)
+    {
+
+        $biller_code = $request->biller_code;
+        $service_id = $request->service_id;
+
+        $response = $this->VTpass->ValidateCable($biller_code, $service_id);
+
+        if($response['status'] == 1){
+
+            return response()->json([
+                'status' => true,
+                'customer_name' => $response['Customer_Name'],
+                'address' => $response['Address'],
+                'meter_no' => $response['Meter_Number'],
+            ]);
+
+        }else{
+
+            return response()->json([
+                'status' => false,
+                'message' => $response['message'],
+            ], 422);
+
+
+        }
+
+
+
+    }
+
 }
