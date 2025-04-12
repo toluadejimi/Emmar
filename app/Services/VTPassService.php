@@ -69,6 +69,8 @@ class VTPassService
             $var = json_decode($var);
             $status = $var->code ?? null;
 
+            dd($var);
+
 
             if($status === "000"){
                 return [
