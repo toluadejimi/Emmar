@@ -86,6 +86,7 @@ class CableController extends Controller
                 'current_bouquet' => $response['data']->Current_Bouquet ?? null,
                 'current_bouquet_code' => $response['data']->Current_Bouquet_Code ?? null,
                 'renewal_amount' => $response['data']->Renewal_Amount ?? null
+                ]);
 
         }else{
 
