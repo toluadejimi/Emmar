@@ -70,6 +70,8 @@ class VTPassService
             $status = $var->code ?? null;
             $biller = $var->content->WrongBillersCode ?? null;
 
+            dd($var);
+
 
             if($biller == true){
                 return [
