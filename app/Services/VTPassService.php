@@ -66,10 +66,19 @@ class VTPassService
 
             $var = curl_exec($curl);
             curl_close($curl);
-
             $var = json_decode($var);
+            $status = $var->code ?? null;
 
-            dd($var, $service_id, $biller_code);
+
+            if($status === "000"){
+                return [
+                    'Customer_Name' => $var->content->Customer_Name,
+                    'Meter_Number' => $var->content->Meter_Number,
+                    'Address' => $var->content->Address,
+                    'Meter_Type' => $var->content->Meter_Type,
+                ];
+            }
+
 
 
             return response()->json([
