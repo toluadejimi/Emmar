@@ -143,13 +143,11 @@ class BankOneService
             ]);
 
             $body = json_decode($response->getBody(), true);
-            $status =  $body['IsSuccessful'] ?? null;
-
-            dd($body, $data_sent);
-
+            $status =  $body['Status'] ?? null;
+            $code =  $body['ResponseCode'] ?? null;
 
 
-            if ($status == true) {
+            if ($status == "Successful" && $code == "00") {
 
                 return [
                     'Status' => true,

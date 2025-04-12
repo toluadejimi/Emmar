@@ -7,6 +7,10 @@ use App\Http\Controllers\Mobile\BillsController;
 use App\Http\Controllers\Mobile\Face\FaceRecognitionController;
 use App\Http\Controllers\Mobile\TransactionController;
 use App\Http\Controllers\Mobile\TransferController;
+use App\Http\Controllers\Mobile\VAS\AirtimeController;
+use App\Http\Controllers\Mobile\VAS\CableController;
+use App\Http\Controllers\Mobile\VAS\DataController;
+use App\Http\Controllers\Mobile\VAS\EducationController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -29,10 +33,10 @@ Route::post('name-enquiry', [TransferController::class, 'name_inquary']);
 
 
 
-Route::get('get-airtime-biller', [BillsController::class, 'get_airtime_biller']);
-Route::get('get-data-biller', [BillsController::class, 'get_data_biller']);
-Route::get('get-cable-biller', [BillsController::class, 'get_cable_biller']);
-Route::get('get-exams-biller', [BillsController::class, 'get_education_biller']);
+Route::get('get-airtime-biller', [AirtimeController::class, 'get_airtime_biller']);
+Route::get('get-data-biller', [DataController::class, 'get_data']);
+Route::get('get-cable-biller', [CableController::class, 'get_cable_biller']);
+Route::get('get-exams-biller', [EducationController::class, 'get_education_biller']);
 Route::get('get-waste-biller', [BillsController::class, 'get_waste_biller']);
 Route::get('get-electric-biller', [BillsController::class, 'get_electric_biller']);
 Route::get('get-betting-biller', [BillsController::class, 'get_betting_biller']);
