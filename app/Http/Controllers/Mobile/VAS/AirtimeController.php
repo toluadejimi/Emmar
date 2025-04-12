@@ -50,11 +50,6 @@ class AirtimeController extends Controller
         $trxref = "VAS" . date('dmhis');
         $sender_account_no = $request->senderAccountNo;
         $amount = $request->Amount;
-        $request_id = date('YmdHis') . Str::random(4);
-        $referenceCode = "ENK-" . random_int(1000000, 999999999);
-        $serviceid = $request->service_id;
-        $phone = $request->phone;
-
 
         $can_transfer = User::where('id', Auth::id())->first()->can_transfer;
         $account_tier = Account::where('user_id', Auth::id())->first()->account_tier;
@@ -102,12 +97,6 @@ class AirtimeController extends Controller
 
 
         try {
-            $user = Auth::user();
-            $request->validate([
-                'service_id' => 'required|string',
-                'amount' => 'required|numeric|min:100',
-                'phone' => 'required|string',
-            ]);
 
             $apiKey = env('VTPASSAPIKEY');
             $skKey = env('VTPASSSKKEY');
@@ -120,7 +109,7 @@ class AirtimeController extends Controller
             $data = [
                 'Amount' => $amount * 100,
                 'PayerAccountNumber' => $sender_account_no,
-                'TransactionReference' => $trxref,
+                'TransactionReference' => $referenceCode,
                 'Narration' => "Debit for Airtime",
             ];
 
