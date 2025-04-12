@@ -11,6 +11,7 @@ use App\Http\Controllers\Mobile\VAS\AirtimeController;
 use App\Http\Controllers\Mobile\VAS\CableController;
 use App\Http\Controllers\Mobile\VAS\DataController;
 use App\Http\Controllers\Mobile\VAS\EducationController;
+use App\Http\Controllers\Mobile\VAS\PowerController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -38,7 +39,7 @@ Route::get('get-data-biller', [DataController::class, 'get_data']);
 Route::get('get-cable-biller', [CableController::class, 'get_cable_biller']);
 Route::get('get-exams-biller', [EducationController::class, 'get_education_biller']);
 Route::get('get-waste-biller', [BillsController::class, 'get_waste_biller']);
-Route::get('get-electric-biller', [BillsController::class, 'get_electric_biller']);
+Route::get('get-electric-biller', [PowerController::class, 'power_biller']);
 Route::get('get-betting-biller', [BillsController::class, 'get_betting_biller']);
 Route::get('get-associations-society-biller', [BillsController::class, 'get_associations_society']);
 Route::get('get-tax-biller', [BillsController::class, 'get_tax_biller']);
