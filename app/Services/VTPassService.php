@@ -68,11 +68,10 @@ class VTPassService
             curl_close($curl);
             $var = json_decode($var);
             $status = $var->code ?? null;
+            $biller = $var->content->WrongBillersCode ?? null;
 
-            dd($var);
 
-
-            if($status === "000"){
+            if($status === "000" && $biller == true){
                 return [
                     'Customer_Name' => $var->content->Customer_Name,
                     'Meter_Number' => $var->content->Meter_Number,
@@ -82,7 +81,8 @@ class VTPassService
                 ];
             }else{
                 return [
-                    'status' => 0
+                    'status' => 0,
+                    'message' => $var->content->error,
                 ];
             }
 

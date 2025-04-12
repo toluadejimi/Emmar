@@ -28,6 +28,28 @@ class BillsController extends Controller
 
 
 
+
+        if($response['status'] == 1){
+
+            return response()->json([
+                'status' => true,
+                'customer_name' => $response['Customer_Name'],
+                'address' => $response['Address'],
+                'meter_no' => $response['Meter_Number'],
+            ]);
+
+        }else{
+
+            return response()->json([
+                'status' => false,
+                'message' => $response['message'],
+            ], 422);
+
+
+        }
+
+
+
    }
 
 }
