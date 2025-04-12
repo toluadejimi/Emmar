@@ -18,12 +18,6 @@ class AirtimeController extends Controller
 {
 
     protected $VTpass;
-
-    public function __construct(VTPassService $VTpass)
-    {
-        $this->VTpass = $VTpass;
-    }
-
     protected $bankOneService;
 
     public function __construct(BankOneService $bankOneService)
