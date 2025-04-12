@@ -3,7 +3,7 @@ namespace App\Services;
 
 class VTPassService
 {
-    public function callVTPassApi($requestId, $serviceId, $amount, $phone, $apiKey, $skKey)
+    public function Pay($requestId, $serviceId, $amount, $phone, $apiKey, $skKey)
     {
         $curl = curl_init();
         curl_setopt_array($curl, array(
