@@ -27,6 +27,7 @@ class BillsController extends Controller
         $response = $this->VTpass->Validate($biller_code, $service_id);
 
 
+        dd($response);
 
         if($response['status'] == 1){
 
