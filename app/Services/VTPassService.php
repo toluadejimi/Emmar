@@ -33,14 +33,29 @@ class VTPassService
         curl_close($curl);
         $var = json_decode($var);
         $staus = $var->response_description ?? null;
+        $pcode = $var->purchased_code ?? null;
+        $power_token = $var->token ?? null;
 
-        if($staus == "TRANSACTION SUCCESSFUL"){
+        if($staus == "TRANSACTION SUCCESSFUL" && $power_token != null && $pcode != null ){
+            return [
+                'status' => true,
+                'requestId' => $var->requestId,
+                'amount' => $var->amount,
+                'token' => $var->token,
+                'unit' => $var->units,
+                'customerName' => $var->customerName,
+                'customerAddress'=> $var->customerAddress,
+            ];
+
+
+        }elseif($staus == "TRANSACTION SUCCESSFUL"){
+
+
             return [
                 'status' => true,
                 'requestId' => $var->requestId
 
             ];
-
 
         }else{
 

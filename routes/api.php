@@ -69,6 +69,8 @@ Route::group(['middleware' => ['auth:api', 'acess']], function () {
     //VAS
     Route::post('buy-airtime', [AirtimeController::class, 'buy_airtime']);
     Route::post('buy-data', [DataController::class, 'buy_data']);
+    Route::post('buy-electric', [PowerController::class, 'buy_electric']);
+    Route::post('buy-insurance', [DataController::class, 'buy_insurance']);
 
 
 

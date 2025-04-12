@@ -126,9 +126,9 @@ class AirtimeController extends Controller
                         $trx->user_id = Auth::id();
                         $trx->transaction_type = "VAS";
                         $trx->note = "Transaction successful";
+                        $trx->vas_type = "airtime";
                         $trx->session_id = $airtime['requestId'];
                         $trx->sender_account_no = $sender_account_no;
-                        $trx->fees = $set->transfer_charges;
                         $trx->debit = $final_tranferaable_amount;
                         $trx->amount = $request->Amount;
                         $trx->status = 1;

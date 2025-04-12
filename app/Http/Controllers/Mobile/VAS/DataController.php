@@ -164,10 +164,10 @@ class DataController extends Controller
                         $trx->trx_ref = $referenceCode;
                         $trx->user_id = Auth::id();
                         $trx->transaction_type = "VAS";
+                        $trx->vas_type = "data";
                         $trx->note = "Transaction successful";
                         $trx->session_id = $airtime['requestId'];
                         $trx->sender_account_no = $sender_account_no;
-                        $trx->fees = $set->transfer_charges;
                         $trx->debit = $final_tranferaable_amount;
                         $trx->amount = $request->Amount;
                         $trx->status = 1;
