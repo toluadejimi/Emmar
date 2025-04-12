@@ -77,15 +77,15 @@ class CableController extends Controller
 
             return response()->json([
 
-               'status' => true,
-                'customer_name' => $response['data'],
-
-//                'status' => true,
-//                'customer_name' => $response['data']->Customer_Name,
-//                'cable_data' => [
-//                    '' =>
-//                ]
-            ]);
+                'status' => true,
+                'customer_name' => $response['data']->Customer_Name ?? null,
+                'cable_status' => $response['data']->Status ?? null,
+                'due_date' => $response['data']->Due_Date ?? null,
+                'customer_no' => $response['data']->Customer_Number ?? null,
+                'customer_type' => $response['data']->Customer_Type ?? null,
+                'current_bouquet' => $response['data']->Current_Bouquet ?? null,
+                'current_bouquet_code' => $response['data']->Current_Bouquet_Code ?? null,
+                'renewal_amount' => $response['data']->Renewal_Amount ?? null
 
         }else{
 
