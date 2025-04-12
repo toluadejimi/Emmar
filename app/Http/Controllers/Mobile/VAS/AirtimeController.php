@@ -95,61 +95,71 @@ class AirtimeController extends Controller
         }
 
 
+        $data = [
+            'Amount' => $amount * 100,
+            'AccountNumber' => $sender_account_no,
+            'RetrievalReference' => $referenceCode,
+            'Narration' => "Debit for Airtime",
+        ];
+
+        $response = ['ResponseCode' => "00", 'Reference' => "000000000"]; //$this->bankOneService->initiate_customer_debit($data);
 
 
-        try {
 
-            $apiKey = env('VTPASSAPIKEY');
-            $skKey = env('VTPASSSKKEY');
-            $requestId = date('YmdHis') . Str::random(4);
+        $set = Setting::where('id', 1)->first();
+        if($set->bills_provider == "vt_pass"){
 
+            try {
 
-            //Deduction
-
-            $data = [
-                'Amount' => $amount * 100,
-                'AccountNumber' => $sender_account_no,
-                'RetrievalReference' => $referenceCode,
-                'Narration' => "Debit for Airtime",
-            ];
-
-            $response = ['ResponseCode' => "00", 'Reference' => "000000000"]; //$this->bankOneService->initiate_customer_debit($data);
-
-            if($response['ResponseCode'] == "00"){
-                $airtime = $this->VTpass->Pay($requestId, $request->service_id, $amount, $request->phone, $apiKey, $skKey);
-                if ($airtime['status'] == true) {
-                    $trx = new Transaction();
-                    $trx->trx_ref = $referenceCode;
-                    $trx->user_id = Auth::id();
-                    $trx->transaction_type = "VAS";
-                    $trx->note = "Transaction successful";
-                    $trx->session_id = $airtime['requestId'];
-                    $trx->sender_account_no = $sender_account_no;
-                    $trx->fees = $set->transfer_charges;
-                    $trx->debit = $final_tranferaable_amount;
-                    $trx->amount = $request->Amount;
-                    $trx->status = 1;
-                    $trx->save();
+                $apiKey = env('VTPASSAPIKEY');
+                $skKey = env('VTPASSSKKEY');
+                $requestId = date('YmdHis') . Str::random(4);
 
 
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'Airtime Purchase Successful',
-                    ]);
+                //Deduction
+
+                if($response['ResponseCode'] == "00"){
+                    $airtime = $this->VTpass->Pay($requestId, $request->service_id, $amount, $request->phone, $apiKey, $skKey);
+                    if ($airtime['status'] == true) {
+                        $trx = new Transaction();
+                        $trx->trx_ref = $referenceCode;
+                        $trx->user_id = Auth::id();
+                        $trx->transaction_type = "VAS";
+                        $trx->note = "Transaction successful";
+                        $trx->session_id = $airtime['requestId'];
+                        $trx->sender_account_no = $sender_account_no;
+                        $trx->fees = $set->transfer_charges;
+                        $trx->debit = $final_tranferaable_amount;
+                        $trx->amount = $request->Amount;
+                        $trx->status = 1;
+                        $trx->save();
+
+
+                        return response()->json([
+                            'status' => true,
+                            'message' => 'Airtime Purchase Successful',
+                        ]);
+                    }
                 }
+
+                return response()->json([
+                    'status' => false,
+                    'message' => "Airtime Purchase failed.",
+                ], 200);
+
+            } catch (\Exception $e) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'An unexpected error occurred: ' . $e->getMessage(),
+                ], 500);
             }
 
-            return response()->json([
-                'status' => false,
-                'message' => "Airtime Purchase failed.",
-            ], 200);
-
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => false,
-                'message' => 'An unexpected error occurred: ' . $e->getMessage(),
-            ], 500);
         }
+
+
+
     }
+
+
 
 }

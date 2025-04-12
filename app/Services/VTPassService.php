@@ -3,7 +3,7 @@ namespace App\Services;
 
 class VTPassService
 {
-    public function Pay($requestId, $serviceId, $amount, $phone, $apiKey, $skKey)
+    public function Pay($requestId, $serviceId, $variation_code, $biller_code, $amount, $phone, $apiKey, $skKey)
     {
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -18,6 +18,8 @@ class VTPassService
             CURLOPT_POSTFIELDS => array(
                 'request_id' => $requestId,
                 'serviceID' => $serviceId,
+                'variation_code' => $variation_code,
+                'billersCode' => $phone,
                 'amount' => $amount,
                 'phone' => $phone,
             ),
