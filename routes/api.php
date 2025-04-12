@@ -41,7 +41,7 @@ Route::get('get-cable-biller', [CableController::class, 'get_cable_biller']);
 Route::get('get-exams-biller', [EducationController::class, 'get_education_biller']);
 Route::get('get-waste-biller', [BillsController::class, 'get_waste_biller']);
 Route::get('get-electric-biller', [PowerController::class, 'power_biller']);
-Route::get('get-betting-biller', [BillsController::class, 'get_betting_biller']);
+Route::post('validate-biller', [BillsController::class, 'valicate_meter']);
 Route::get('get-associations-society-biller', [BillsController::class, 'get_associations_society']);
 Route::get('get-tax-biller', [BillsController::class, 'get_tax_biller']);
 Route::get('get-insurance-biller', [InsuranceController::class, 'get_insurance_biller']);
