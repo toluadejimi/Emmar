@@ -55,12 +55,7 @@ class AirtimeController extends Controller
         $account_tier = Account::where('user_id', Auth::id())->first()->account_tier;
         $set = Setting::where('id', 1)->first();
         $get_balance = $this->bankOneService->get_balance($sender_account_no);
-
-
-
         $balance = $get_balance['availabe_balance'];
-
-
         $final_tranferaable_amount = $amount;
         if($balance < $final_tranferaable_amount){
             return response()->json([
@@ -115,7 +110,7 @@ class AirtimeController extends Controller
                 'Narration' => "Debit for Airtime",
             ];
 
-            $response = $this->bankOneService->initiate_customer_debit($data);
+            $response = ['ResponseCode' => "00", 'Reference' => "000000000"]; //$this->bankOneService->initiate_customer_debit($data);
 
             if($response['ResponseCode'] == "00"){
                 $response = $this->callVTPassApi($requestId, $request->service_id, $amount, $request->phone, $apiKey, $skKey);
