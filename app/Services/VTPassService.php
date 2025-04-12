@@ -54,7 +54,7 @@ class VTPassService
                 CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS => array(
                     'serviceID' => $service_id,
-                    'biller_code' => $biller_code,
+                    'billersCode' => $biller_code,
                 ),
                 CURLOPT_HTTPHEADER => array(
                     //"Authorization: Basic $auth=",
