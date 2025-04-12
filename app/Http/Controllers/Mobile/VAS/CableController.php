@@ -77,7 +77,7 @@ class CableController extends Controller
 
             return response()->json([
                 'status' => true,
-                'data' => $response['data'],
+                'customer_name' => $response['data']->Customer_Name,
             ]);
 
         }else{
