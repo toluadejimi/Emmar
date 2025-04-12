@@ -71,6 +71,8 @@ class VTPassService
             $biller = $var->content->WrongBillersCode ?? null;
 
 
+            dd($var, $biller);
+
             if($biller == false){
                 return [
                     'Customer_Name' => $var->content->Customer_Name,
