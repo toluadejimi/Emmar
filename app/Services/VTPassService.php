@@ -135,14 +135,9 @@ class VTPassService
             $biller = $var->content->WrongBillersCode ?? null;
 
 
-            dd($var);
-
             if($biller == false){
                 return [
-                    'Customer_Name' => $var->content->Customer_Name,
-                    'Meter_Number' => $var->content->Meter_Number,
-                    'Address' => $var->content->Address,
-                    'Meter_Type' => $var->content->Meter_Type,
+                    'data' => $var->content,
                     'status' => 1
                 ];
             }else{
