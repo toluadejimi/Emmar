@@ -143,7 +143,7 @@ class PowerController extends Controller
 
                return response()->json([
                    'status' => false,
-                   'message' => "Data Purchase failed.",
+                   'message' => "Electric Token Purchase failed.",
                ], 200);
 
            } catch (\Exception $e) {
