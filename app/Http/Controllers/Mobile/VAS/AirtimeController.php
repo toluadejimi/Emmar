@@ -151,7 +151,7 @@ class AirtimeController extends Controller
 
         } catch (\Exception $e) {
             return response()->json([
-                'status' => $this->failed,
+                'status' => false,
                 'message' => 'An unexpected error occurred: ' . $e->getMessage(),
             ], 500);
         }
