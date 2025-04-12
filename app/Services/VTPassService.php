@@ -38,6 +38,8 @@ class VTPassService
                 'requestId' => $var->requestId
 
             ];
+
+
         }else{
 
             send_notification("VAS  Response: ====>>> \n\n" . json_encode($var));

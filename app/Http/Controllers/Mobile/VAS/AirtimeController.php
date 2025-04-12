@@ -116,17 +116,14 @@ class AirtimeController extends Controller
             $response = ['ResponseCode' => "00", 'Reference' => "000000000"]; //$this->bankOneService->initiate_customer_debit($data);
 
             if($response['ResponseCode'] == "00"){
-                $response = $this->VTpass->Pay($requestId, $request->service_id, $amount, $request->phone, $apiKey, $skKey);
-                send_notification("VAS AIRTIME Response: " . json_encode($response));
-                if ($response->response_description === 'TRANSACTION SUCCESSFUL') {
-
-
+                $airtime = $this->VTpass->Pay($requestId, $request->service_id, $amount, $request->phone, $apiKey, $skKey);
+                if ($airtime['status'] == true) {
                     $trx = new Transaction();
                     $trx->trx_ref = $referenceCode;
                     $trx->user_id = Auth::id();
                     $trx->transaction_type = "VAS";
                     $trx->note = "Transaction successful";
-                    $trx->session_id = $response['Reference'];
+                    $trx->session_id = $airtime['requestId'];
                     $trx->sender_account_no = $sender_account_no;
                     $trx->fees = $set->transfer_charges;
                     $trx->debit = $final_tranferaable_amount;
