@@ -47,7 +47,7 @@ class AirtimeController extends Controller
     public function buy_airtime(Request $request)
     {
 
-        $referenceCode = "EMRVAS-" . random_int(1000000, 999999999);
+        $referenceCode = "EMRVAS-" . random_int(100, 999);
         $sender_account_no = $request->senderAccountNo;
         $amount = $request->Amount;
 
