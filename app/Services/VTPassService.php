@@ -27,8 +27,24 @@ class VTPassService
             ),
         ));
 
-        $response = curl_exec($curl);
+        $var = curl_exec($curl);
         curl_close($curl);
+        $var = json_decode($var);
+        $staus = $var->response_description ?? null;
+
+        if($staus == "TRANSACTION SUCCESSFUL"){
+            return [
+                'status' => true,
+                'requestId' => $var->requestId
+
+            ];
+        }else{
+            send_notification("VAS  Response: ====>>> \n\n" . json_encode($var));
+            return [
+                'status' => false
+            ];
+        }
+
 
         return json_decode($response, true);
     }
