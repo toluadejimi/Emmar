@@ -8,13 +8,21 @@ use App\Models\Setting;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Services\BankOneService;
+use App\Services\VTPassService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
+
 class AirtimeController extends Controller
 {
 
+    protected $VTpass;
+
+    public function __construct(VTPassService $VTpass)
+    {
+        $this->VTpass = $VTpass;
+    }
 
     protected $bankOneService;
 
@@ -113,7 +121,7 @@ class AirtimeController extends Controller
             $response = ['ResponseCode' => "00", 'Reference' => "000000000"]; //$this->bankOneService->initiate_customer_debit($data);
 
             if($response['ResponseCode'] == "00"){
-                $response = $this->callVTPassApi($requestId, $request->service_id, $amount, $request->phone, $apiKey, $skKey);
+                $response = $this->VTpass->Pay($requestId, $request->service_id, $amount, $request->phone, $apiKey, $skKey);
                 send_notification("VAS AIRTIME Response: " . json_encode($response));
                 if ($response->response_description === 'TRANSACTION SUCCESSFUL') {
 
