@@ -7,12 +7,24 @@ use App\Models\Account;
 use App\Models\Setting;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Services\BankOneService;
+use App\Services\VTPassService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class DataController extends Controller
 {
+
+    protected $bankOneService, $VTpass;
+
+    public function __construct(BankOneService $bankOneService, VTpassService $VTpass)
+    {
+        $this->bankOneService = $bankOneService;
+        $this->VTpass = $VTpass;
+
+    }
+
     public function get_data()
     {
 
