@@ -229,7 +229,7 @@ class BankOneService
             $data_sent = $data;
             $data_sent['Token'] = $this->token;
             $data_sent['GLCode'] = env("GLCODE");
-            $response = $this->client->post($this->thirdpartybaseUrl . "/apiservice/CoreTransactions/Debit", [
+            $response = $this->client->post($this->thirdpartybaseUrl . "CoreTransactions/Debit", [
                 'json' => $data_sent,
                 'headers' => [
                     'Accept' => 'application/json',
