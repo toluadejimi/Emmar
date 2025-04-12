@@ -110,8 +110,8 @@ class AirtimeController extends Controller
 
             $data = [
                 'Amount' => $amount * 100,
-                'PayerAccountNumber' => $sender_account_no,
-                'TransactionReference' => $referenceCode,
+                'AccountNumber' => $sender_account_no,
+                'RetrievalReference' => $referenceCode,
                 'Narration' => "Debit for Airtime",
             ];
 
