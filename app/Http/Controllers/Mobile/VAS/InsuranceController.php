@@ -24,7 +24,8 @@ class InsuranceController extends Controller
 
                 return response()->json([
                     'status' => true,
-                    'data' => $insurance,
+                    'service_name' => $result->content->ServiceName,
+                    'data' => $insurance
                 ], 200);
 
 
