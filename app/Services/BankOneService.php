@@ -299,6 +299,9 @@ class BankOneService
                 $ledger_balance = (int)$legder_availabe;
 
 
+                dd($data, $avilable_balance, $account);
+
+
                 return [
                     'account_number' => $account,
                     'availabe_balance' => $avilable_balance ?? 'N/A',
