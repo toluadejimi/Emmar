@@ -38,7 +38,7 @@ Route::post('name-enquiry', [TransferController::class, 'name_inquary']);
 Route::get('get-airtime-biller', [AirtimeController::class, 'get_airtime_biller']);
 Route::get('get-data-biller', [DataController::class, 'get_data']);
 Route::get('get-cable-biller', [CableController::class, 'get_cable_biller']);
-Route::get('validate-cable', [CableController::class, 'validate_cable']);
+Route::post('validate-cable', [CableController::class, 'validate_cable']);
 Route::get('get-exams-biller', [EducationController::class, 'get_education_biller']);
 Route::get('get-waste-biller', [BillsController::class, 'get_waste_biller']);
 Route::get('get-electric-biller', [PowerController::class, 'power_biller']);
