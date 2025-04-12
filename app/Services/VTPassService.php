@@ -70,8 +70,10 @@ class VTPassService
             $status = $var->code ?? null;
             $biller = $var->content->WrongBillersCode ?? null;
 
+            dd($var);
 
-            if($status === "000" && $biller == true){
+
+            if($biller == "true"){
                 return [
                     'Customer_Name' => $var->content->Customer_Name,
                     'Meter_Number' => $var->content->Meter_Number,
