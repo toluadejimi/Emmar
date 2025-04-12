@@ -17,8 +17,7 @@ use Illuminate\Support\Str;
 class AirtimeController extends Controller
 {
 
-    protected $VTpass;
-    protected $bankOneService;
+    protected $bankOneService, $VTpass;
 
     public function __construct(BankOneService $bankOneService, VTpassService $VTpass)
     {
