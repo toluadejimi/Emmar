@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <!-- Favicon icon-->
-    <link rel="shortcut icon" type="image/png" href="{{url('')}}/public/assets2/images/logos/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="public/public/assets2/images/logos/favicon.png" />
 
     <!-- Core Css -->
-    <link rel="stylesheet" href="{{url('')}}/public/assets2/css/styles.css" />
-    <link rel="stylesheet" href="{{url('')}}/public/assets2/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" />
+    <link rel="stylesheet" href="public/public/assets2/css/styles.css" />
+    <link rel="stylesheet" href="public/public/assets2/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
 
 
@@ -26,7 +26,7 @@
 
     <!-- Preloader -->
     <div class="preloader">
-        <img src="{{url('')}}/public/assets2/images/logos/favicon.png" alt="loader" class="lds-ripple img-fluid" />
+        <img src="public/public/assets2/images/logos/favicon.png" alt="loader" class="lds-ripple img-fluid" />
     </div>
     <div id="main-wrapper">
         <!-- Sidebar Start -->
@@ -37,8 +37,8 @@
                 <!-- ---------------------------------- -->
                 <div class="brand-logo d-flex align-items-center justify-content-between">
                     <a href="index.html" class="text-nowrap logo-img">
-                        <img src="{{url('')}}/public/assets2/images/logos/dark-logo.svg" class="dark-logo" alt="Logo-Dark" />
-                        <img src="{{url('')}}/public/assets2/images/logos/light-logo.svg" class="light-logo" alt="Logo-light" />
+                        <img src="public/public/assets2/images/logos/dark-logo.svg" class="dark-logo" alt="Logo-Dark" />
+                        <img src="public/public/assets2/images/logos/light-logo.svg" class="light-logo" alt="Logo-light" />
                     </a>
                     <a href="javascript:void(0)" class="sidebartoggler ms-auto text-decoration-none fs-5 d-block d-xl-none">
                         <i class="ti ti-x"></i>
@@ -169,7 +169,7 @@
                 <div class="fixed-profile p-3 mx-4 mb-2 bg-secondary-subtle rounded mt-3">
                     <div class="hstack gap-3">
                         <div class="john-img">
-                            <img src="{{url('')}}/public/assets2/images/profile/user-1.jpg" class="rounded-circle" width="40" height="40" alt="" />
+                            <img src="public/public/assets2/images/profile/user-1.jpg" class="rounded-circle" width="40" height="40" alt="" />
                         </div>
                         <div class="john-title">
                             <h6 class="mb-0 fs-4 fw-semibold">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
@@ -231,7 +231,7 @@
                                         <a class="nav-link pe-0" href="javascript:void(0)" id="drop1" data-bs-toggle="dropdown" aria-expanded="false">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-profile-img">
-                                                    <img src="{{url('')}}/public/assets2/images/profile/user-1.jpg" class="rounded-circle" width="35" height="35" alt="" />
+                                                    <img src="public/public/assets2/images/profile/user-1.jpg" class="rounded-circle" width="35" height="35" alt="" />
                                                 </div>
                                             </div>
                                         </a>
@@ -241,7 +241,7 @@
                                                     <h5 class="mb-0 fs-5 fw-semibold">User Profile</h5>
                                                 </div>
                                                 <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                                                    <img src="{{url('')}}/public/assets2/images/profile/user-1.jpg" class="rounded-circle" width="80" height="80" alt="" />
+                                                    <img src="public/public/assets2/images/profile/user-1.jpg" class="rounded-circle" width="80" height="80" alt="" />
                                                     <div class="ms-3">
                                                         <h5 class="mb-1 fs-3">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h5>
                                                         <span class="mb-1 d-block">Super Agent</span>
@@ -253,7 +253,7 @@
                                                 <div class="message-body">
                                                     <a href="#" class="py-8 px-7 mt-8 d-flex align-items-center">
                                                         <span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">
-                                                            <img src="{{url('')}}/public/assets2/images/svgs/icon-account.svg" alt="" width="24" height="24" />
+                                                            <img src="public/public/assets2/images/svgs/icon-account.svg" alt="" width="24" height="24" />
                                                         </span>
                                                         <div class="w-75 d-inline-block v-middle ps-3">
                                                             <h6 class="mb-1 fs-3 fw-semibold lh-base">My Profile</h6>
@@ -271,7 +271,7 @@
                                                             </div>
                                                             <div class="col-6">
                                                                 <div class="m-n4 unlimited-img">
-                                                                    <img src="{{url('')}}/public/assets2/images/backgrounds/unlimited-bg.png" alt="" class="w-100" />
+                                                                    <img src="public/public/assets2/images/backgrounds/unlimited-bg.png" alt="" class="w-100" />
                                                                 </div>
                                                             </div>
                                                         </div> --}}
@@ -1241,7 +1241,7 @@
                 <ul class="mb-0">
                     <li class="pb-7">
                         <div class="d-flex align-items-center">
-                            <img src="{{url('')}}/public/assets2/images/products/product-1.jpg" width="95" height="75" class="rounded-1 me-9 flex-shrink-0" alt="" />
+                            <img src="public/public/assets2/images/products/product-1.jpg" width="95" height="75" class="rounded-1 me-9 flex-shrink-0" alt="" />
                             <div>
                                 <h6 class="mb-1">Supreme toys cooker</h6>
                                 <p class="mb-0 text-muted fs-2">Kitchenware Item</p>
@@ -1262,7 +1262,7 @@
                     </li>
                     <li class="pb-7">
                         <div class="d-flex align-items-center">
-                            <img src="{{url('')}}/public/assets2/images/products/product-2.jpg" width="95" height="75" class="rounded-1 me-9 flex-shrink-0" alt="" />
+                            <img src="public/public/assets2/images/products/product-2.jpg" width="95" height="75" class="rounded-1 me-9 flex-shrink-0" alt="" />
                             <div>
                                 <h6 class="mb-1">Supreme toys cooker</h6>
                                 <p class="mb-0 text-muted fs-2">Kitchenware Item</p>
@@ -1283,7 +1283,7 @@
                     </li>
                     <li class="pb-7">
                         <div class="d-flex align-items-center">
-                            <img src="{{url('')}}/public/assets2/images/products/product-3.jpg" width="95" height="75" class="rounded-1 me-9 flex-shrink-0" alt="" />
+                            <img src="public/public/assets2/images/products/product-3.jpg" width="95" height="75" class="rounded-1 me-9 flex-shrink-0" alt="" />
                             <div>
                                 <h6 class="mb-1">Supreme toys cooker</h6>
                                 <p class="mb-0 text-muted fs-2">Kitchenware Item</p>
@@ -1325,24 +1325,24 @@
     <div class="dark-transparent sidebartoggler"></div>
     <!-- Import Js Files -->
 
-    <script src="{{url('')}}/public/assets2/libs/jquery/dist/jquery.min.js"></script>
-    <script src="{{url('')}}/public/assets2/js/app.min.js"></script>
-    <script src="{{url('')}}/public/assets2/js/app.init.js"></script>
-    <script src="{{url('')}}/public/assets2/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{url('')}}/public/assets2/libs/simplebar/dist/simplebar.min.js"></script>
+    <script src="public/public/assets2/libs/jquery/dist/jquery.min.js"></script>
+    <script src="public/public/assets2/js/app.min.js"></script>
+    <script src="public/public/assets2/js/app.init.js"></script>
+    <script src="public/public/assets2/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="public/public/assets2/libs/simplebar/dist/simplebar.min.js"></script>
 
-    <script src="{{url('')}}/public/assets2/js/sidebarmenu.js"></script>
-    <script src="{{url('')}}/public/assets2/js/theme.js"></script>
+    <script src="public/public/assets2/js/sidebarmenu.js"></script>
+    <script src="public/public/assets2/js/theme.js"></script>
 
-    <script src="{{url('')}}/public/assets2/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="{{url('')}}/public/assets2/js/dashboards/dashboard2.js"></script>
+    <script src="public/public/assets2/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="public/public/assets2/js/dashboards/dashboard2.js"></script>
 
-    <script src="{{url('')}}/public/assets2/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="{{url('')}}/public/assets2/js/datatable/datatable-basic.init.js"></script>
+    <script src="public/public/assets2/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="public/public/assets2/js/datatable/datatable-basic.init.js"></script>
 
 
 
-    <script src="{{url('')}}/public/assets2/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="public/public/assets2/libs/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
@@ -1350,7 +1350,7 @@
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 
-    <script src="{{url('')}}/public/assets2/js/datatable/datatable-advanced.init.js"></script>
+    <script src="public/public/assets2/js/datatable/datatable-advanced.init.js"></script>
 
 
 

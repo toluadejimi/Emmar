@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 
 class HomeController extends Controller
@@ -9,27 +11,33 @@ class HomeController extends Controller
 
     public function index()
     {
-
+        return view('web.auth.welcome');
 
     }
 
-    public function get_started()
+    public function login_now(request $request)
     {
-        return view('web.auth.login');
-    }
 
 
-    public function register()
-    {
-        return view('web.auth.register');
-    }
 
-    public function pending(request $request)
-    {
-        $data['email'] = null;
-        $data['message'] = null;
+        $credentials = request([
+            'email', 'password'
+        ]);
 
-        return view('web.auth.pending_verification', $data);
+
+        if (!auth()->attempt($credentials)) {
+            return back()->with('error', 'Email or password incorrect');
+        }
+
+        if(Auth::user()->role == 0){
+            return redirect('admin-dashboard');
+        }else{
+            return redirect('user-dashboard');
+
+        }
+
+
+
     }
 
 

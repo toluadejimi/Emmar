@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3585023b-e5bf-4ab9-8287-1463f1397fd4" name="Changes" comment="export terminal by  banks added">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Mobile/VAS/AirtimeController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Services/VTpass.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/BankOneService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/BankOneService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/5c/f6/5cf647b680eaddf43658655e9a962e247c5da5a3" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/5c/f6/5cf647b680eaddf43658655e9a962e247c5da5a3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/c0/71/c071422490d526a8aada046adf3a9c9fa0593468" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/c0/71/c071422490d526a8aada046adf3a9c9fa0593468" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/ca/7a/ca7a6d547efb8a410fb67d6f54f8627db450adbb" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/ca/7a/ca7a6d547efb8a410fb67d6f54f8627db450adbb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/ec/c4/ecc49f49f4da6b940dcde13f0571e79c299871e6" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/ec/c4/ecc49f49f4da6b940dcde13f0571e79c299871e6" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../posy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../posy/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -515,382 +524,11 @@
       <workItem from="1742312349706" duration="40560000" />
       <workItem from="1742639731314" duration="3717000" />
       <workItem from="1742649286189" duration="1208000" />
-    </task>
-    <task id="LOCAL-00083" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735673080927</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1735673080927</updated>
-    </task>
-    <task id="LOCAL-00084" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735673603080</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1735673603080</updated>
-    </task>
-    <task id="LOCAL-00085" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735673916801</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1735673916801</updated>
-    </task>
-    <task id="LOCAL-00086" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735673996284</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1735673996284</updated>
-    </task>
-    <task id="LOCAL-00087" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735674093432</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1735674093432</updated>
-    </task>
-    <task id="LOCAL-00088" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735674158639</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1735674158639</updated>
-    </task>
-    <task id="LOCAL-00089" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735674234409</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1735674234409</updated>
-    </task>
-    <task id="LOCAL-00090" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735674264785</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1735674264785</updated>
-    </task>
-    <task id="LOCAL-00091" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735674677879</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1735674677879</updated>
-    </task>
-    <task id="LOCAL-00092" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735894099053</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1735894099054</updated>
-    </task>
-    <task id="LOCAL-00093" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735894323550</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1735894323550</updated>
-    </task>
-    <task id="LOCAL-00094" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735894515706</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1735894515706</updated>
-    </task>
-    <task id="LOCAL-00095" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735894666138</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1735894666138</updated>
-    </task>
-    <task id="LOCAL-00096" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735894860469</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1735894860469</updated>
-    </task>
-    <task id="LOCAL-00097" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735894926728</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1735894926728</updated>
-    </task>
-    <task id="LOCAL-00098" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735895212435</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1735895212435</updated>
-    </task>
-    <task id="LOCAL-00099" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735895737437</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1735895737437</updated>
-    </task>
-    <task id="LOCAL-00100" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735895887233</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1735895887233</updated>
-    </task>
-    <task id="LOCAL-00101" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735900810052</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1735900810052</updated>
-    </task>
-    <task id="LOCAL-00102" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735901215326</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1735901215326</updated>
-    </task>
-    <task id="LOCAL-00103" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735901302297</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1735901302297</updated>
-    </task>
-    <task id="LOCAL-00104" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735901794717</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1735901794717</updated>
-    </task>
-    <task id="LOCAL-00105" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735915649925</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1735915649925</updated>
-    </task>
-    <task id="LOCAL-00106" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735915904220</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1735915904220</updated>
-    </task>
-    <task id="LOCAL-00107" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735915997429</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
-      <option name="project" value="LOCAL" />
-      <updated>1735915997429</updated>
-    </task>
-    <task id="LOCAL-00108" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735969264845</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1735969264845</updated>
-    </task>
-    <task id="LOCAL-00109" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735969447753</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1735969447753</updated>
-    </task>
-    <task id="LOCAL-00110" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735969539533</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1735969539533</updated>
-    </task>
-    <task id="LOCAL-00111" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735969571590</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1735969571590</updated>
-    </task>
-    <task id="LOCAL-00112" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735969607734</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1735969607734</updated>
-    </task>
-    <task id="LOCAL-00113" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735969662397</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1735969662397</updated>
-    </task>
-    <task id="LOCAL-00114" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735969886406</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1735969886406</updated>
-    </task>
-    <task id="LOCAL-00115" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735969970025</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
-      <option name="project" value="LOCAL" />
-      <updated>1735969970025</updated>
-    </task>
-    <task id="LOCAL-00116" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735970032895</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1735970032895</updated>
-    </task>
-    <task id="LOCAL-00117" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735970121254</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1735970121254</updated>
-    </task>
-    <task id="LOCAL-00118" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735970147193</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1735970147193</updated>
-    </task>
-    <task id="LOCAL-00119" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735970193694</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
-      <option name="project" value="LOCAL" />
-      <updated>1735970193694</updated>
-    </task>
-    <task id="LOCAL-00120" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735971089308</created>
-      <option name="number" value="00120" />
-      <option name="presentableId" value="LOCAL-00120" />
-      <option name="project" value="LOCAL" />
-      <updated>1735971089308</updated>
-    </task>
-    <task id="LOCAL-00121" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1735971644905</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1735971644905</updated>
-    </task>
-    <task id="LOCAL-00122" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1738238804680</created>
-      <option name="number" value="00122" />
-      <option name="presentableId" value="LOCAL-00122" />
-      <option name="project" value="LOCAL" />
-      <updated>1738238804680</updated>
-    </task>
-    <task id="LOCAL-00123" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1738239526481</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1738239526481</updated>
-    </task>
-    <task id="LOCAL-00124" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1738252986779</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1738252986779</updated>
-    </task>
-    <task id="LOCAL-00125" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1738253122897</created>
-      <option name="number" value="00125" />
-      <option name="presentableId" value="LOCAL-00125" />
-      <option name="project" value="LOCAL" />
-      <updated>1738253122897</updated>
-    </task>
-    <task id="LOCAL-00126" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1738253229103</created>
-      <option name="number" value="00126" />
-      <option name="presentableId" value="LOCAL-00126" />
-      <option name="project" value="LOCAL" />
-      <updated>1738253229103</updated>
-    </task>
-    <task id="LOCAL-00127" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1738253271342</created>
-      <option name="number" value="00127" />
-      <option name="presentableId" value="LOCAL-00127" />
-      <option name="project" value="LOCAL" />
-      <updated>1738253271342</updated>
-    </task>
-    <task id="LOCAL-00128" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1738253362098</created>
-      <option name="number" value="00128" />
-      <option name="presentableId" value="LOCAL-00128" />
-      <option name="project" value="LOCAL" />
-      <updated>1738253362098</updated>
-    </task>
-    <task id="LOCAL-00129" summary="export terminal by  banks added">
-      <option name="closed" value="true" />
-      <created>1738253376295</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1738253376295</updated>
+      <workItem from="1742902779442" duration="12370000" />
+      <workItem from="1743244939266" duration="13780000" />
+      <workItem from="1743419413172" duration="1031000" />
+      <workItem from="1743533158699" duration="252000" />
+      <workItem from="1743534892847" duration="29155000" />
     </task>
     <task id="LOCAL-00130" summary="export terminal by  banks added">
       <option name="closed" value="true" />
@@ -908,7 +546,383 @@
       <option name="project" value="LOCAL" />
       <updated>1742649369386</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1742908868437</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1742908868437</updated>
+    </task>
+    <task id="LOCAL-00133" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1742909042850</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1742909042850</updated>
+    </task>
+    <task id="LOCAL-00134" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1742909141072</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1742909141072</updated>
+    </task>
+    <task id="LOCAL-00135" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1742914899340</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1742914899340</updated>
+    </task>
+    <task id="LOCAL-00136" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1742917093008</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1742917093008</updated>
+    </task>
+    <task id="LOCAL-00137" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1742917204855</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1742917204855</updated>
+    </task>
+    <task id="LOCAL-00138" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1742917372495</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1742917372495</updated>
+    </task>
+    <task id="LOCAL-00139" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1743057689639</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1743057689639</updated>
+    </task>
+    <task id="LOCAL-00140" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1743059182780</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1743059182780</updated>
+    </task>
+    <task id="LOCAL-00141" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1743059581130</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1743059581130</updated>
+    </task>
+    <task id="LOCAL-00142" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1743059701401</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1743059701401</updated>
+    </task>
+    <task id="LOCAL-00143" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1743245010810</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1743245010810</updated>
+    </task>
+    <task id="LOCAL-00144" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1743245170199</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1743245170199</updated>
+    </task>
+    <task id="LOCAL-00145" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1743245329243</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1743245329243</updated>
+    </task>
+    <task id="LOCAL-00146" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1743246039540</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1743246039540</updated>
+    </task>
+    <task id="LOCAL-00147" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1743246313745</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1743246313745</updated>
+    </task>
+    <task id="LOCAL-00148" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1743246556586</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1743246556586</updated>
+    </task>
+    <task id="LOCAL-00149" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1743316552762</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1743316552762</updated>
+    </task>
+    <task id="LOCAL-00150" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1743332296953</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1743332296953</updated>
+    </task>
+    <task id="LOCAL-00151" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1743604285783</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1743604285783</updated>
+    </task>
+    <task id="LOCAL-00152" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744333975995</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1744333975995</updated>
+    </task>
+    <task id="LOCAL-00153" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744334396512</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1744334396512</updated>
+    </task>
+    <task id="LOCAL-00154" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744335921502</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1744335921502</updated>
+    </task>
+    <task id="LOCAL-00155" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744336676382</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1744336676382</updated>
+    </task>
+    <task id="LOCAL-00156" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744337361123</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1744337361123</updated>
+    </task>
+    <task id="LOCAL-00157" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744337798937</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1744337798937</updated>
+    </task>
+    <task id="LOCAL-00158" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744338923020</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1744338923020</updated>
+    </task>
+    <task id="LOCAL-00159" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744339306005</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1744339306005</updated>
+    </task>
+    <task id="LOCAL-00160" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744339331117</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1744339331117</updated>
+    </task>
+    <task id="LOCAL-00161" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744339486855</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1744339486855</updated>
+    </task>
+    <task id="LOCAL-00162" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744362026002</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1744362026002</updated>
+    </task>
+    <task id="LOCAL-00163" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744362138583</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1744362138583</updated>
+    </task>
+    <task id="LOCAL-00164" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744362234701</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1744362234701</updated>
+    </task>
+    <task id="LOCAL-00165" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744362571891</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1744362571891</updated>
+    </task>
+    <task id="LOCAL-00166" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744362697925</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1744362697925</updated>
+    </task>
+    <task id="LOCAL-00167" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744362777282</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1744362777282</updated>
+    </task>
+    <task id="LOCAL-00168" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744362839307</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1744362839307</updated>
+    </task>
+    <task id="LOCAL-00169" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744363408260</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1744363408260</updated>
+    </task>
+    <task id="LOCAL-00170" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744363627068</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1744363627068</updated>
+    </task>
+    <task id="LOCAL-00171" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744363883761</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1744363883761</updated>
+    </task>
+    <task id="LOCAL-00172" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744364152580</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1744364152580</updated>
+    </task>
+    <task id="LOCAL-00173" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744364348689</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1744364348689</updated>
+    </task>
+    <task id="LOCAL-00174" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744364429205</created>
+      <option name="number" value="00174" />
+      <option name="presentableId" value="LOCAL-00174" />
+      <option name="project" value="LOCAL" />
+      <updated>1744364429205</updated>
+    </task>
+    <task id="LOCAL-00175" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744364885754</created>
+      <option name="number" value="00175" />
+      <option name="presentableId" value="LOCAL-00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1744364885754</updated>
+    </task>
+    <task id="LOCAL-00176" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744364960369</created>
+      <option name="number" value="00176" />
+      <option name="presentableId" value="LOCAL-00176" />
+      <option name="project" value="LOCAL" />
+      <updated>1744364960369</updated>
+    </task>
+    <task id="LOCAL-00177" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744365616534</created>
+      <option name="number" value="00177" />
+      <option name="presentableId" value="LOCAL-00177" />
+      <option name="project" value="LOCAL" />
+      <updated>1744365616534</updated>
+    </task>
+    <task id="LOCAL-00178" summary="export terminal by  banks added">
+      <option name="closed" value="true" />
+      <created>1744365824299</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1744365824299</updated>
+    </task>
+    <option name="localTasksCounter" value="179" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -976,6 +990,15 @@
           </properties>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/app/Services/BankOneService.php</url>
+          <line>273</line>
+          <properties>
+            <option name="className" value="\App\Services\BankOneService" />
+            <option name="methodName" value="getCommercialBanks" />
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/../momas/app/Http/Controllers/Admin/TokenController.php</url>
           <line>625</line>
@@ -983,7 +1006,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/routes/api.php</url>
-          <line>71</line>
+          <line>49</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>

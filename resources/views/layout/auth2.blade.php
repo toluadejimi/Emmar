@@ -14,13 +14,13 @@
     <link rel="stylesheet" href="{{ url('') }}/public/assets/css/line-awesome.min.css">
     <link rel="stylesheet" href="{{ url('') }}/public/assets/css/owl.carousel.min.css" />
 
-    <!-- Custom Css --> 
+    <!-- Custom Css -->
     <link rel="stylesheet" type="text/css" href="{{ url('') }}/public/assets/css/main.css">
     <link rel="stylesheet" type="text/css" href="{{ url('') }}/public/assets/css/theme-1.css">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    
+
 
     <!-- Favicon -->
     <link rel="icon" href="{{ url('') }}/public/assets/images/favicon.png">
@@ -36,7 +36,7 @@
 
   </head>
   <body>
-    
+
     <div class="ugf-wrapper flat-grey-bg">
       <div class="ugf-content-block">
         <div class="logo">
