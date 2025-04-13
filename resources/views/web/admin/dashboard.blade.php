@@ -156,7 +156,7 @@
                                 <td class="px-6 py-2">
                                     @php
                                         switch ($data->status) {
-                                            case 2:
+                                            case 1:
                                                 $statusText = 'Successful';
                                                 $statusClass = 'text-primary bg-primary/10 border border-n30 dark:border-n500 dark:bg-bg3';
                                                 break;
