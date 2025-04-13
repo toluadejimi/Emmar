@@ -109,6 +109,10 @@
                                 <div class="flex items-center gap-1">Type</div>
                             </th>
                             <th class="min-w-[120px] cursor-pointer px-6 py-5 text-start">
+                                <div class="flex items-center gap-1">Note</div>
+                            </th>
+
+                            <th class="min-w-[120px] cursor-pointer px-6 py-5 text-start">
                                 <div class="flex items-center gap-1">Amount</div>
                             </th>
                             <th class="min-w-[120px] cursor-pointer px-6 py-5 text-start">
@@ -145,6 +149,7 @@
                                 </td>
 
                                 <td class="px-6 py-2">{{ $data->transaction_type ?? 'Unknown' }}</td>
+                                <td class="px-6 py-2">{{ $data->note ?? 'Unknown' }}</td>
 
                                 <td class="px-6 py-2">
                                     @php
