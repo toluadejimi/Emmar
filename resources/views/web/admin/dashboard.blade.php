@@ -127,7 +127,7 @@
                                         $icon = 'placeholder.png'; // fallback
                                         if ($data->transaction_type === 'transfer') {
                                             $icon = 'transfer.png';
-                                        } elseif ($data->transaction_type === 'vas') {
+                                        } elseif ($data->transaction_type === 'VAS') {
                                             $icon = 'bills.png';
                                         }
                                     @endphp
