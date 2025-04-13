@@ -691,47 +691,7 @@
             <a href="https://teamxtech.co" class="text-secondary"> TEAM X TECH LTD </a>
         </p>
         <div class="justify-center max-md:flex max-md:w-full"></div>
-        <ul class="flex gap-2 xxxl:gap-3">
-            <li>
-                <a href="index.html#" aria-label="social link"
-                   class="inline-flex rounded-full border border-primary p-1 text-primary duration-300 hover:bg-primary hover:text-n0 md:p-1.5 xxxl:p-2">
-                    <i class="lab la-facebook-f"></i>
-                </a>
-            </li>
-            <li>
-                <a href="index.html#" aria-label="social link"
-                   class="inline-flex rounded-full border border-primary p-1 text-primary duration-300 hover:bg-primary hover:text-n0 md:p-1.5 xxxl:p-2">
-                    <i class="lab la-twitter"></i>
-                </a>
-            </li>
-            <li>
-                <a href="index.html#" aria-label="social link"
-                   class="inline-flex rounded-full border border-primary p-1 text-primary duration-300 hover:bg-primary hover:text-n0 md:p-1.5 xxxl:p-2">
-                    <i class="lab la-skype"></i>
-                </a>
-            </li>
-            <li>
-                <a href="index.html#" aria-label="social link"
-                   class="inline-flex rounded-full border border-primary p-1 text-primary duration-300 hover:bg-primary hover:text-n0 md:p-1.5 xxxl:p-2">
-                    <i class="lab la-instagram"></i>
-                </a>
-            </li>
-            <li>
-                <a href="index.html#" aria-label="social link"
-                   class="inline-flex rounded-full border border-primary p-1 text-primary duration-300 hover:bg-primary hover:text-n0 md:p-1.5 xxxl:p-2">
-                    <i class="lab la-linkedin-in"></i>
-                </a>
-            </li>
-        </ul>
 
-        <ul class="flex gap-3 text-sm max-lg:w-full max-lg:justify-center lg:gap-4 lg:text-base">
-            <li>
-                <a href="index.html#">Privacy Policy</a>
-            </li>
-            <li>
-                <a href="index.html#">Terms of condition</a>
-            </li>
-        </ul>
     </div>
 </footer>
 <!-- modal -->
