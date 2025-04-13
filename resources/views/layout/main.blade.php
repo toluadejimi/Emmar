@@ -252,7 +252,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="sign-in.html"
+                                <a href="logout"
                                    class="flex items-center gap-2 rounded-md px-2 py-1.5 duration-300 hover:bg-primary hover:text-n0">
                                         <span class="flex items-center">
                     <i class="las la-sign-out-alt mt-1 text-xl"></i>

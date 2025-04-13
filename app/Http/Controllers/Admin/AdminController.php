@@ -21,6 +21,10 @@ class AdminController extends Controller
     public function admin_index(request $request)
     {
 
+        if (!Auth::check()) {
+            return redirect('/');
+        }
+
         $data['total_inflow'] = Transaction::where('status', 2)->sum('credit');
         $data['total_outflow'] = Transaction::where('status', 2)->sum('debit');
         $data['total_profit'] = Transaction::where('status', 2)->sum('fees');

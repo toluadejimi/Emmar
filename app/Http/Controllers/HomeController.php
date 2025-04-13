@@ -15,6 +15,14 @@ class HomeController extends Controller
 
     }
 
+    public function log_out()
+    {
+
+        Auth::logout();
+        return redirect('web.auth.welcome');
+
+    }
+
     public function login_now(request $request)
     {
 
