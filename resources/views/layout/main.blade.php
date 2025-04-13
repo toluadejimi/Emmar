@@ -43,49 +43,49 @@
                     <i class="las la-angle-left text-lg"></i>
                 </button>
                 <!-- Select layout -->
-                <div class="topnav-layout">
-                    <div id="layout-btn"
-                         class="flex w-full cursor-pointer items-center justify-between gap-2 rounded-[30px] border border-n30 bg-primary/5 px-4 py-1 dark:border-n500 dark:bg-bg3 lg:py-1.5 xxl:px-6 xxl:py-2">
-                            <span class="flex select-none items-center gap-2">
-              <i class="las la-border-all text-3xl text-primary"></i>
-              <span id="selected-layout" class="capitalize">Vertical</span>
-                            </span>
-                        <i id="drop-arrow" class="las la-angle-down shrink-0 text-lg duration-300"></i>
-                    </div>
-                    <ul id="layout"
-                        class="hide absolute left-0 top-full z-20 w-full origin-top rounded-lg bg-n0 p-2 shadow-[0px_6px_30px_0px_rgba(0,0,0,0.08)] duration-300 dark:bg-bg4">
-                        <li data-layout="vertical"
-                            class="active block cursor-pointer select-none rounded-md p-2 duration-300 hover:text-primary">
-                            Vertical
-                        </li>
-                        <li data-layout="two-column"
-                            class="block cursor-pointer select-none rounded-md p-2 duration-300 hover:text-primary">
-                            Two-Column
-                        </li>
-                        <li data-layout="hovered"
-                            class="block cursor-pointer select-none rounded-md p-2 duration-300 hover:text-primary">
-                            Hovered
-                        </li>
-                        <li data-layout="horizontal"
-                            class="block cursor-pointer select-none rounded-md p-2 duration-300 hover:text-primary">
-                            Horizontal
-                        </li>
-                        <li data-layout="detached"
-                            class="block cursor-pointer select-none rounded-md p-2 duration-300 hover:text-primary">
-                            Detached
-                        </li>
-                    </ul>
-                </div>
+{{--                <div class="topnav-layout">--}}
+{{--                    <div id="layout-btn"--}}
+{{--                         class="flex w-full cursor-pointer items-center justify-between gap-2 rounded-[30px] border border-n30 bg-primary/5 px-4 py-1 dark:border-n500 dark:bg-bg3 lg:py-1.5 xxl:px-6 xxl:py-2">--}}
+{{--                            <span class="flex select-none items-center gap-2">--}}
+{{--              <i class="las la-border-all text-3xl text-primary"></i>--}}
+{{--              <span id="selected-layout" class="capitalize">Vertical</span>--}}
+{{--                            </span>--}}
+{{--                        <i id="drop-arrow" class="las la-angle-down shrink-0 text-lg duration-300"></i>--}}
+{{--                    </div>--}}
+{{--                    <ul id="layout"--}}
+{{--                        class="hide absolute left-0 top-full z-20 w-full origin-top rounded-lg bg-n0 p-2 shadow-[0px_6px_30px_0px_rgba(0,0,0,0.08)] duration-300 dark:bg-bg4">--}}
+{{--                        <li data-layout="vertical"--}}
+{{--                            class="active block cursor-pointer select-none rounded-md p-2 duration-300 hover:text-primary">--}}
+{{--                            Vertical--}}
+{{--                        </li>--}}
+{{--                        <li data-layout="two-column"--}}
+{{--                            class="block cursor-pointer select-none rounded-md p-2 duration-300 hover:text-primary">--}}
+{{--                            Two-Column--}}
+{{--                        </li>--}}
+{{--                        <li data-layout="hovered"--}}
+{{--                            class="block cursor-pointer select-none rounded-md p-2 duration-300 hover:text-primary">--}}
+{{--                            Hovered--}}
+{{--                        </li>--}}
+{{--                        <li data-layout="horizontal"--}}
+{{--                            class="block cursor-pointer select-none rounded-md p-2 duration-300 hover:text-primary">--}}
+{{--                            Horizontal--}}
+{{--                        </li>--}}
+{{--                        <li data-layout="detached"--}}
+{{--                            class="block cursor-pointer select-none rounded-md p-2 duration-300 hover:text-primary">--}}
+{{--                            Detached--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
 
-                <!-- Search bar -->
-                <form class="topnav-search">
-                    <input type="text" placeholder="Search"
-                           class="w-full border-none bg-transparent py-2 focus:border-none focus:shadow-none focus:outline-none md:py-2.5 xxl:py-3 ltr:pl-4 rtl:pr-4"/>
-                    <button aria-label="search btn"
-                            class="flex h-8 w-9 items-center justify-center rounded-full bg-primary text-n0">
-                        <i class="las la-search text-lg"></i>
-                    </button>
-                </form>
+{{--                <!-- Search bar -->--}}
+{{--                <form class="topnav-search">--}}
+{{--                    <input type="text" placeholder="Search"--}}
+{{--                           class="w-full border-none bg-transparent py-2 focus:border-none focus:shadow-none focus:outline-none md:py-2.5 xxl:py-3 ltr:pl-4 rtl:pr-4"/>--}}
+{{--                    <button aria-label="search btn"--}}
+{{--                            class="flex h-8 w-9 items-center justify-center rounded-full bg-primary text-n0">--}}
+{{--                        <i class="las la-search text-lg"></i>--}}
+{{--                    </button>--}}
+{{--                </form>--}}
             </div>
             <div class="flex items-center gap-3 sm:gap-4 xxl:gap-6">
                 <!-- mobile Search  -->

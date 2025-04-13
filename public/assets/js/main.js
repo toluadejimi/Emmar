@@ -1,9 +1,9 @@
 // set theme config
 const themeConfig = {
-    layout: '', // vertical, two-column, hovered, detached, horizontal
+    layout: 'hovered', // vertical, two-column, hovered, detached, horizontal
     direction: '', // rtl, ltr
     theme: '', // light, dark
-    customizer: true, // true, false
+    customizer: false, // true, false
 };
 
 let currentlayout = themeConfig.layout || 'vertical';
