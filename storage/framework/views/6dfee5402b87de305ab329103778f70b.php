@@ -265,7 +265,7 @@
                                                 </div>
                                                 <div class="d-grid py-4 px-7 pt-8">
                                                     <div class="upgrade-plan bg-primary-subtle position-relative overflow-hidden rounded-4 p-4 mb-9">
-                                                        
+
                                                     </div>
                                                     <a href="logout" class="btn btn-outline-primary">Log Out</a>
                                                 </div>
