@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Mobile\Auth\LoginController;
+use App\Http\Controllers\Mobile\Auth\ProfileController;
 use App\Http\Controllers\Mobile\Auth\RegisterController;
 use App\Http\Controllers\Mobile\BillsController;
 use App\Http\Controllers\Mobile\Face\FaceRecognitionController;
@@ -52,10 +53,13 @@ Route::get('get-ticket-biller', [BillsController::class, 'get_ticket_biller']);
 
 Route::group(['middleware' => ['auth:api', 'acess']], function () {
 
+
+    //Transfer
     Route::post('get-banks', [TransferController::class, 'get_banks']);
     Route::post('suggested-banks', [TransferController::class, 'suggested_banks']);
     Route::post('recent-transfer', [TransferController::class, 'recent_transfers']);
     Route::post('initiate-bank-transfer', [TransferController::class, 'initiate_transfer']);
+    Route::post('initiate-local-transfer', [TransferController::class, 'initiate_local_transfer']);
     Route::post('verify-pin', [TransferController::class, 'verify_pin']);
     Route::post('get-charges', [TransferController::class, 'get_fees']);
     Route::get('get-account', [TransferController::class, 'get_account']);
@@ -71,6 +75,11 @@ Route::group(['middleware' => ['auth:api', 'acess']], function () {
     Route::post('buy-data', [DataController::class, 'buy_data']);
     Route::post('buy-electric', [PowerController::class, 'buy_electric']);
     Route::post('buy-insurance', [DataController::class, 'buy_insurance']);
+
+    //Profile
+    Route::get('get-account', [ProfileController::class, 'get_user_account']);
+
+
 
 
 

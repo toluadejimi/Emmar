@@ -368,13 +368,13 @@ class TransferController extends Controller
     }
 
 
-    public function local_transfer(request $request)
+    public function initiate_local_transfer(request $request)
     {
+
 
         $amount = $request->Amount * 100;
         $sender_account_no = $request->senderAccountNo;
         $sender_name = $request->senderName;
-        $bank_code = $request->bankCode;
         $receiver_account_no = $request->receiverAccountNo;
         $receiver_name = $request->receiverName;
         $receiver_bank_name = $request->receiverBankName;
@@ -390,13 +390,13 @@ class TransferController extends Controller
         $user_pin = User::where('id', Auth::id())->first()->pin;
 
 
-        $final_tranferaable_amount = $request->Amount + $set->transfer_charges;
-//        if($balance < $final_tranferaable_amount){
-//            return response()->json([
-//                'status' => false,
-//                'message' => "Insufficient Funds"
-//            ], 422);
-//        }
+        $final_tranferaable_amount = $request->Amount;
+        if((int)$balance < $final_tranferaable_amount){
+            return response()->json([
+                'status' => false,
+                'message' => "Insufficient Funds"
+            ], 422);
+        }
 
 
         if ($set->bank_transfer == 0) {
@@ -435,15 +435,14 @@ class TransferController extends Controller
 
         $data = [
             'Amount' => $amount,
-            'PayerAccountNumber' => $sender_account_no,
+            'FromAccountNumber' => $sender_account_no,
             'Payer' => $sender_name,
-            'ReceiverBankCode' => $bank_code,
-            'ReceiverAccountNumber' => $receiver_account_no,
-            'ReceiverName' => $receiver_name,
-            'TransactionReference' => $trxref,
+            'ToAccountNumber' => $receiver_account_no,
+            'RetrievalReference' => $trxref,
+            'Narration' => $request->narattion ?? "Trf to " . "$receiver_name",
         ];
 
-        $response = $this->bankOneService->initiate_bank_transfer($data);
+        $response = $this->bankOneService->initiate_local_transfer($data);
 
 
         $status = $response['Status'] ?? null;
@@ -454,16 +453,16 @@ class TransferController extends Controller
             $trx = new Transaction();
             $trx->trx_ref = $trxref;
             $trx->user_id = Auth::id();
-            $trx->receiver_bank_code = $bank_code;
-            $trx->receiver_bank_name = $receiver_bank_name;
+            $trx->receiver_bank_code = "100962";
+            $trx->receiver_bank_name = "EMAAR MICROFINANCEBANK";
             $trx->receiver_account_no = $receiver_account_no;
             $trx->receiver_name = $receiver_name;
-            $trx->sender_name = $sender_name;
-            $trx->transaction_type = "Bank_Transfer";
+            $trx->sender_name = Auth::user()->first_name." ".Auth::user()->last_name." ".Auth::user()->other_name;
+            $trx->transaction_type = "Local_Bank_Transfer";
             $trx->note = "Transaction successful";
             $trx->session_id = $response['SessionID'];
             $trx->sender_account_no = $sender_account_no;
-            $trx->fees = $set->transfer_charges;
+            $trx->fees = 0;
             $trx->debit = $final_tranferaable_amount;
             $trx->amount = $request->Amount;
             $trx->status = 1;
@@ -475,9 +474,9 @@ class TransferController extends Controller
             $rec->user_id = Auth::id();
             $rec->account_number = $receiver_account_no;
             $rec->account_name = $receiver_name;
-            $rec->bank_code = $bank_code;
+            $rec->bank_code = "100962";
             $rec->bank_logo = $bank_logo;
-            $rec->bank_name = $receiver_bank_name;
+            $rec->bank_name = "EMAAR MICROFINANCEBANK";
             $rec->save();
 
 
@@ -492,12 +491,12 @@ class TransferController extends Controller
             $trx = new Transaction();
             $trx->trx_ref = $trxref;
             $trx->user_id = Auth::id();
-            $trx->receiver_bank_code = $bank_code;
+            $trx->receiver_bank_code = "100962";
             $trx->receiver_bank_name = $receiver_bank_name;
             $trx->receiver_account_no = $receiver_account_no;
             $trx->receiver_name = $receiver_name;
             $trx->sender_name = $sender_name;
-            $trx->transaction_type = "Bank_Transfer";
+            $trx->transaction_type = "Local_Bank_Transfer";
             $trx->note = $response['ResponseMessage'];
             $trx->sender_account_no = $sender_account_no;
             $trx->fees = 0;

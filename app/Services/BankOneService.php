@@ -129,6 +129,55 @@ class BankOneService
     }
 
 
+    public function initiate_local_transfer($data)
+    {
+        try {
+            $data_sent = $data;
+            $data_sent['AuthenticationKey'] = $this->token;
+            $response = $this->client->post($this->thirdpartybaseUrl . "CoreTransactions/LocalFundsTransfer", [
+                'json' => $data_sent,
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                ],
+            ]);
+
+            $body = json_decode($response->getBody(), true);
+            $status =  $body['IsSuccessful'] ?? null;
+            $code =  $body['ResponseCode'] ?? null;
+
+
+            if ($status == true && $code == "00") {
+
+                return [
+                    'Status' => true,
+                    'SessionID' => $body['Reference'] ?? "10000000000000",
+                ];
+
+            } else {
+
+                $message = "Local Bank Transfer Failed ===>>>>" . json_encode($body) ?? 'No error message' ." \n\n Request=====> ".json_encode($data_sent);
+                send_notification($message);
+
+                return [
+                    'Status' => false,
+                    'Message' => $body['ResponseMessage'],
+                ];
+
+
+            }
+
+
+        } catch (RequestException $e) {
+            $message = $e->getMessage();
+            send_notification($message);
+            $data['status'] = 0;
+            $data['message'] = $e->getMessage();
+            return $data;
+        }
+    }
+
+
     public function initiate_bank_transfer($data)
     {
         try {
@@ -157,53 +206,6 @@ class BankOneService
             } else {
 
                 $message = "Bank Transfer Failed ===>>>>" . json_encode($body) ?? 'No error message' ." \n\n Request=====> ".json_encode($data_sent);
-                send_notification($message);
-
-                return [
-                    'Status' => false,
-                    'Message' => $body['ResponseMessage'],
-                ];
-
-
-            }
-
-
-        } catch (RequestException $e) {
-            $message = $e->getMessage();
-            send_notification($message);
-            $data['status'] = 0;
-            $data['message'] = $e->getMessage();
-            return $data;
-        }
-    }
-    public function initiate_local_transfer($data)
-    {
-        try {
-            $data_sent = $data;
-            $data_sent['Token'] = $this->token;
-            $response = $this->client->post($this->thirdpartybaseUrl . "CoreTransactions/LocalFundsTransfer", [
-                'json' => $data_sent,
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/json',
-                ],
-            ]);
-
-            $body = json_decode($response->getBody(), true);
-            $status =  true; //$body['IsSuccessful'] ?? null;
-
-
-
-            if ($status == true) {
-
-                return [
-                    'Status' => true,
-                    'SessionID' => $body['SessionID'] ?? "10000000000000",
-                ];
-
-            } else {
-
-                $message = "Bank Transfer Failed ===>>>>" . json_encode($body) ?? 'No error message';
                 send_notification($message);
 
                 return [
