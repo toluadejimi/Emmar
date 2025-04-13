@@ -352,6 +352,12 @@
                                 </button>
                                 <ul class="submenu-hide submenu">
                                     <li>
+                                        <a href="all-customers" class="submenu-link">
+                                            <i class="las la-minus text-xl"></i>
+                                            <span>Customers</span>
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="bank-account" class="submenu-link">
                                             <i class="las la-minus text-xl"></i>
                                             <span>Bank Account</span>
