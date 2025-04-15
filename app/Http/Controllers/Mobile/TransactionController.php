@@ -32,15 +32,13 @@ class TransactionController extends Controller
                'message' => $response['message'],
            ], 200);
 
-
-
        }else{
 
 
            return response()->json([
                'status' => true,
                'data' => $response['message'],
-           ], 422);
+           ], 200);
 
        }
 
