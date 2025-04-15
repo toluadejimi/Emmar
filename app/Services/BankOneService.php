@@ -343,13 +343,12 @@ class BankOneService
                      $bank_logo = BankLogo::where('name', $bank['Name'])->value('logo') ?? null;
 
 
-
-//                    BankLogo::updateOrCreate(
-//                        [
-//                            'name' => $bank['Name'],
-//                            'code' => $bank['Code']
-//                        ]
-//                    );
+                    BankLogo::updateOrCreate(
+                        [
+                            'name' => $bank['Name'],
+                            'code' => $bank['Code']
+                        ]
+                    );
 
 
                     $banks[] = [
