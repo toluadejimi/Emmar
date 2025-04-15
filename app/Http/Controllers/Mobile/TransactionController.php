@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Mobile;
 
 use App\Http\Controllers\Controller;
+use App\Models\Transaction;
 use App\Services\BankOneService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -48,9 +49,20 @@ class TransactionController extends Controller
    public function get_single_transaction(request $request)
    {
 
-       $id = $request->id;
-       $date = $request->date;
 
+
+       $id = $request->InstrumentNo;
+
+       $trx = Transaction::where('trx_ref', $id)->first() ?? null;
+       if($trx == null){
+           return response()->json([
+               'status' => false,
+               'message' => "Transaction not found",
+           ], 401);
+       }
+
+       $get_date = $trx->created_at;
+       $date = \Carbon\Carbon::parse($get_date)->format('Y-m-d');
 
        $response = $this->bankOneService->get_single_transaction($id, $date);
 

@@ -68,6 +68,7 @@ Route::group(['middleware' => ['auth:api', 'acess']], function () {
     //Transactions
     Route::post('transaction-history', [TransactionController::class, 'get_transaction']);
     Route::post('get-date', [TransactionController::class, 'get_transaction_by_date']);
+    Route::post('get-single-transaction', [TransactionController::class, 'get_single_transaction']);
 
 
     //VAS
