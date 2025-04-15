@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Mobile\TransactionController;
 use App\Http\Controllers\TerminalopController;
 use App\Http\Controllers\VirtualAccountController;
 use App\Http\Controllers\ZoneController;
@@ -25,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',  [HomeController::class,'index']);
 Route::post('login-now',  [HomeController::class,'login_now']);
 Route::get('admin-dashboard',  [AdminController::class,'admin_index']);
+Route::get('/download-receipt', [TransactionController::class, 'downloadReceipt']);
 
 
 

@@ -11,6 +11,7 @@ use App\Models\Setting;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Services\BankOneService;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -483,8 +484,10 @@ class TransferController extends Controller
 
             return response()->json([
                 'status' => true,
-                'message' => "Transaction Successful"
-            ], 422);
+                'message' => "Transaction Successful",
+                'trx_id' => $trx->id
+
+            ], 200);
 
 
         } elseif ($status == false ) {
@@ -524,6 +527,10 @@ class TransferController extends Controller
 
 
     }
+
+
+
+
 
 
 

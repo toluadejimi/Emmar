@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mobile;
 
 use App\Http\Controllers\Controller;
 use App\Services\BankOneService;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -45,6 +46,9 @@ class TransactionController extends Controller
    }
 
 
+
+
+
     public function notification(request $request)
     {
 
@@ -52,4 +56,31 @@ class TransactionController extends Controller
         send_notification($message);
 
     }
+
+
+
+    public function downloadReceipt(Request $request)
+    {
+        $date = now();
+        $dateFull = $date->format('d F Y H:i');
+        $dateOnly = $date->format('d F Y');
+
+        $pdf = Pdf::loadView('receipt', [
+            'date' => $dateFull,
+            'dateOnly' => $dateOnly,
+            'amount' => '100.00',
+            'type' => 'one off payment',
+            'beneficiary' => 'TOLULOPE ADEWALE ADEJIMI',
+            'beneficiary_account' => '907*****33',
+            'beneficiary_bank' => 'PalmPay',
+            'sender' => 'TOLULOPE ADEJIMI',
+            'sender_account' => '001*****20',
+            'sender_bank' => 'Stanbic IBTC Bank',
+            'status' => 'successful',
+            'narration' => 'TOLULOPE ADEWALE ADEJIMI',
+        ]);
+
+        return $pdf->download('transaction_receipt.pdf');
+    }
+
 }
