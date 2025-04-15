@@ -193,6 +193,7 @@ class TransferController extends Controller
         }
 
 
+
         $data = [
             'Amount' => $amount,
             'PayerAccountNumber' => $sender_account_no,
@@ -262,7 +263,7 @@ class TransferController extends Controller
             $trx->receiver_name = $receiver_name;
             $trx->sender_name = $sender_name;
             $trx->transaction_type = "Bank_Transfer";
-            $trx->note = $response['ResponseMessage'];
+            $trx->note = $response['Message'];
             $trx->sender_account_no = $sender_account_no;
             $trx->fees = 0;
             $trx->debit = $final_tranferaable_amount;
@@ -272,7 +273,7 @@ class TransferController extends Controller
 
             return response()->json([
                 'status' => false,
-                'message' => "Transaction Failed"
+                'message' => "Transaction Failed | ". $response['Message']
             ], 422);
 
 

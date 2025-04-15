@@ -210,7 +210,7 @@ class BankOneService
 
                 return [
                     'Status' => false,
-                    'Message' => $body['ResponseMessage'],
+                    'Message' => $body['ResponseDescription'],
                 ];
 
 
