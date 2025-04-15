@@ -80,11 +80,18 @@
 <body>
 <div class="container">
 
-    <div class="header" style="display: flex; justify-content: space-between; align-items: center; padding: 2px 2px;">
-        <span style="font-size: 16px; font-weight: bold;">Online Transaction Receipt</span>
-        <img src="{{ public_path('/assets/images/mainlogo.png') }}" alt="Logo" style="height: 30px; margin-left: 400px;">
+    <div class="header" style="padding: 15px 20px;">
+        <table style="width: 100%;">
+            <tr>
+                <td style="font-size: 16px; font-weight: bold; color: #077d1f;">
+                    Online Transaction Receipt
+                </td>
+                <td style="text-align: right;">
+                    <img src="{{ public_path('assets/images/mainlogo.png') }}" alt="Logo" style="height: 40px;">
+                </td>
+            </tr>
+        </table>
     </div>
-
 
     <div class="section">
         <div class="label">Date</div>

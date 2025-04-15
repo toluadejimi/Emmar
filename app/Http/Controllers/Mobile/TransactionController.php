@@ -45,6 +45,35 @@ class TransactionController extends Controller
 
 
    }
+   public function get_single_transaction(request $request)
+   {
+
+       $id = $request->id;
+       $date = $request->date;
+
+
+       $response = $this->bankOneService->get_single_transaction($id, $date);
+
+
+       if($response['status'] == 0){
+           return response()->json([
+               'status' => false,
+               'message' => $response['message'],
+           ], 200);
+
+       }else{
+
+
+           return response()->json([
+               'status' => true,
+               'data' => $response['message'],
+           ], 200);
+
+       }
+
+
+
+   }
 
 
 

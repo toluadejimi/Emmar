@@ -228,6 +228,7 @@ class TransferController extends Controller
             $trx->transaction_type = "Bank_Transfer";
             $trx->note = "Transaction successful";
             $trx->session_id = $response['SessionID'];
+            $trx->UniqueIdentifier = $response['UniqueIdentifier'];
             $trx->sender_account_no = $sender_account_no;
             $trx->fees = $set->transfer_charges;
             $trx->debit = $final_tranferaable_amount;

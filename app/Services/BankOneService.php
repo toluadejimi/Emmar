@@ -201,6 +201,7 @@ class BankOneService
                 return [
                     'Status' => true,
                     'SessionID' => $body['SessionID'] ?? "10000000000000",
+                    'UniqueIdentifier' => $body['UniqueIdentifier'] ?? "10000000000000",
                 ];
 
             } else {
@@ -483,561 +484,55 @@ class BankOneService
     }
 
 
-    public function get_airtime_biller(){
-
-        try {
-
-            $Token = $this->token;
-            $response = $this->client->get($this->thirdpartybaseUrl . "BillsPayment/GetBillers/{$Token}", [
-                'headers' => [
-                    'Accept' => 'application/json'
-                ]
-            ]);
-
-            $data = json_decode($response->getBody(), true) ?? [];
-
-            $formatted = [];
-
-            foreach ($data as $biller) {
-                if ($biller['CategoryId'] == "3") {
-                    $formatted[] = [
-                        "CategoryId" => $biller['CategoryId'],
-                        "BillerID" => $biller['BillerID'],
-                        "BillerCategoryID" => $biller['BillerCategoryID'],
-                        "Narration" => $biller['Narration'],
-                        "CurrencyCode" => $biller['CurrencyCode'],
-                        "CurrencySymbol" => $biller['CurrencySymbol'],
-                        "CustomerField1" => $biller['CustomerField1'],
-                        "CustomerField2" => $biller['CustomerField2'],
-                        "SupportEmail" => $biller['SupportEmail'],
-                        "Surcharge" => $biller['Surcharge'],
-                        "Url" => $biller['Url'],
-                        "LogoUrl" => $biller['LogoUrl'],
-                        "IsActive" => $biller['IsActive'],
-                        "ShortName" => $biller['ShortName'],
-                        "CustomSectionUrl" => $biller['CustomSectionUrl'],
-                        "ID" => $biller['ID'],
-                        "Name" => $biller['Name'],
-                        "Status" => $biller['Status'],
-                        "StatusDetails" => $biller['StatusDetails'],
-                        "RequestStatus" => $biller['RequestStatus'],
-                        "ResponseDescription" => $biller['ResponseDescription'],
-                        "ResponseStatus" => $biller['ResponseStatus'],
-                    ];
-                }
-            }
-
-            return $formatted;
-
-        } catch (\Exception $e) {
-
-            $message = "Account Balance Error ====>>>" . $e->getMessage();
-            send_notification($message);
-            return 0;
-        }
-
-
-    }
-    public function get_data_biller(){
-
-        try {
-
-            $Token = $this->token;
-            $response = $this->client->get($this->thirdpartybaseUrl . "BillsPayment/GetBillers/{$Token}", [
-                'headers' => [
-                    'Accept' => 'application/json'
-                ]
-            ]);
-
-            $data = json_decode($response->getBody(), true) ?? [];
-
-            $formatted = [];
-
-            foreach ($data as $biller) {
-                if ($biller['CategoryId'] == "4") {
-                    $formatted[] = [
-                        "CategoryId" => $biller['CategoryId'],
-                        "BillerID" => $biller['BillerID'],
-                        "BillerCategoryID" => $biller['BillerCategoryID'],
-                        "Narration" => $biller['Narration'],
-                        "CurrencyCode" => $biller['CurrencyCode'],
-                        "CurrencySymbol" => $biller['CurrencySymbol'],
-                        "CustomerField1" => $biller['CustomerField1'],
-                        "CustomerField2" => $biller['CustomerField2'],
-                        "SupportEmail" => $biller['SupportEmail'],
-                        "Surcharge" => $biller['Surcharge'],
-                        "Url" => $biller['Url'],
-                        "LogoUrl" => $biller['LogoUrl'],
-                        "IsActive" => $biller['IsActive'],
-                        "ShortName" => $biller['ShortName'],
-                        "CustomSectionUrl" => $biller['CustomSectionUrl'],
-                        "ID" => $biller['ID'],
-                        "Name" => $biller['Name'],
-                        "Status" => $biller['Status'],
-                        "StatusDetails" => $biller['StatusDetails'],
-                        "RequestStatus" => $biller['RequestStatus'],
-                        "ResponseDescription" => $biller['ResponseDescription'],
-                        "ResponseStatus" => $biller['ResponseStatus'],
-                    ];
-                }
-            }
-
-            return $formatted;
-
-        } catch (\Exception $e) {
-
-            $message = "Account Balance Error ====>>>" . $e->getMessage();
-            send_notification($message);
-            return 0;
-        }
-
-
-    }
-    public function get_cable_biller(){
-
-        try {
-
-            $Token = $this->token;
-            $response = $this->client->get($this->thirdpartybaseUrl . "BillsPayment/GetBillers/{$Token}", [
-                'headers' => [
-                    'Accept' => 'application/json'
-                ]
-            ]);
-
-            $data = json_decode($response->getBody(), true) ?? [];
-
-            $formatted = [];
-
-            foreach ($data as $biller) {
-                if ($biller['CategoryId'] == "2") {
-                    $formatted[] = [
-                        "CategoryId" => $biller['CategoryId'],
-                        "BillerID" => $biller['BillerID'],
-                        "BillerCategoryID" => $biller['BillerCategoryID'],
-                        "Narration" => $biller['Narration'],
-                        "CurrencyCode" => $biller['CurrencyCode'],
-                        "CurrencySymbol" => $biller['CurrencySymbol'],
-                        "CustomerField1" => $biller['CustomerField1'],
-                        "CustomerField2" => $biller['CustomerField2'],
-                        "SupportEmail" => $biller['SupportEmail'],
-                        "Surcharge" => $biller['Surcharge'],
-                        "Url" => $biller['Url'],
-                        "LogoUrl" => $biller['LogoUrl'],
-                        "IsActive" => $biller['IsActive'],
-                        "ShortName" => $biller['ShortName'],
-                        "CustomSectionUrl" => $biller['CustomSectionUrl'],
-                        "ID" => $biller['ID'],
-                        "Name" => $biller['Name'],
-                        "Status" => $biller['Status'],
-                        "StatusDetails" => $biller['StatusDetails'],
-                        "RequestStatus" => $biller['RequestStatus'],
-                        "ResponseDescription" => $biller['ResponseDescription'],
-                        "ResponseStatus" => $biller['ResponseStatus'],
-                    ];
-                }
-            }
-
-            return $formatted;
-
-        } catch (\Exception $e) {
-
-            $message = "Account Balance Error ====>>>" . $e->getMessage();
-            send_notification($message);
-            return 0;
-        }
-
-
-    }
-    public function get_exams_biller(){
-
-        try {
-
-            $Token = $this->token;
-            $response = $this->client->get($this->thirdpartybaseUrl . "BillsPayment/GetBillers/{$Token}", [
-                'headers' => [
-                    'Accept' => 'application/json'
-                ]
-            ]);
-
-            $data = json_decode($response->getBody(), true) ?? [];
-
-            $formatted = [];
-
-            foreach ($data as $biller) {
-                if ($biller['ID'] == "3588") {
-                    $formatted[] = [
-                        "CategoryId" => $biller['CategoryId'],
-                        "BillerID" => $biller['BillerID'],
-                        "BillerCategoryID" => $biller['BillerCategoryID'],
-                        "Narration" => $biller['Narration'],
-                        "CurrencyCode" => $biller['CurrencyCode'],
-                        "CurrencySymbol" => $biller['CurrencySymbol'],
-                        "CustomerField1" => $biller['CustomerField1'],
-                        "CustomerField2" => $biller['CustomerField2'],
-                        "SupportEmail" => $biller['SupportEmail'],
-                        "Surcharge" => $biller['Surcharge'],
-                        "Url" => $biller['Url'],
-                        "LogoUrl" => $biller['LogoUrl'],
-                        "IsActive" => $biller['IsActive'],
-                        "ShortName" => $biller['ShortName'],
-                        "CustomSectionUrl" => $biller['CustomSectionUrl'],
-                        "ID" => $biller['ID'],
-                        "Name" => $biller['Name'],
-                        "Status" => $biller['Status'],
-                        "StatusDetails" => $biller['StatusDetails'],
-                        "RequestStatus" => $biller['RequestStatus'],
-                        "ResponseDescription" => $biller['ResponseDescription'],
-                        "ResponseStatus" => $biller['ResponseStatus'],
-                    ];
-                }
-            }
-
-            return $formatted;
-
-        } catch (\Exception $e) {
-
-            $message = "Account Balance Error ====>>>" . $e->getMessage();
-            send_notification($message);
-            return 0;
-        }
-
-
-    }
-    public function get_waste_biller(){
-
-        try {
-
-            $Token = $this->token;
-            $response = $this->client->get($this->thirdpartybaseUrl . "BillsPayment/GetBillers/{$Token}", [
-                'headers' => [
-                    'Accept' => 'application/json'
-                ]
-            ]);
-
-            $data = json_decode($response->getBody(), true) ?? [];
-
-            $formatted = [];
-
-            foreach ($data as $biller) {
-                if ($biller['ID'] == "3511") {
-//               if($biller['BillerID'] == 0){
-                    $formatted[] = [
-                        "CategoryId" => $biller['CategoryId'],
-                        "BillerID" => $biller['BillerID'],
-                        "BillerCategoryID" => $biller['BillerCategoryID'],
-                        "Narration" => $biller['Narration'],
-                        "CurrencyCode" => $biller['CurrencyCode'],
-                        "CurrencySymbol" => $biller['CurrencySymbol'],
-                        "CustomerField1" => $biller['CustomerField1'],
-                        "CustomerField2" => $biller['CustomerField2'],
-                        "SupportEmail" => $biller['SupportEmail'],
-                        "Surcharge" => $biller['Surcharge'],
-                        "Url" => $biller['Url'],
-                        "LogoUrl" => $biller['LogoUrl'],
-                        "IsActive" => $biller['IsActive'],
-                        "ShortName" => $biller['ShortName'],
-                        "CustomSectionUrl" => $biller['CustomSectionUrl'],
-                        "ID" => $biller['ID'],
-                        "Name" => $biller['Name'],
-                        "Status" => $biller['Status'],
-                        "StatusDetails" => $biller['StatusDetails'],
-                        "RequestStatus" => $biller['RequestStatus'],
-                        "ResponseDescription" => $biller['ResponseDescription'],
-                        "ResponseStatus" => $biller['ResponseStatus'],
-                    ];
-                }
-            }
-
-            return $formatted;
-
-        } catch (\Exception $e) {
-
-            $message = "Account Balance Error ====>>>" . $e->getMessage();
-            send_notification($message);
-            return 0;
-        }
-
-
-    }
-    public function get_electric_biller(){
-
-        try {
-
-            $Token = $this->token;
-            $response = $this->client->get($this->thirdpartybaseUrl . "BillsPayment/GetBillers/{$Token}", [
-                'headers' => [
-                    'Accept' => 'application/json'
-                ]
-            ]);
-
-            $data = json_decode($response->getBody(), true) ?? [];
-
-            $formatted = [];
-
-            foreach ($data as $biller) {
-                if ($biller['CategoryId'] == "1") {
-//               if($biller['BillerID'] == 0){
-                    $formatted[] = [
-                        "CategoryId" => $biller['CategoryId'],
-                        "BillerID" => $biller['BillerID'],
-                        "BillerCategoryID" => $biller['BillerCategoryID'],
-                        "Narration" => $biller['Narration'],
-                        "CurrencyCode" => $biller['CurrencyCode'],
-                        "CurrencySymbol" => $biller['CurrencySymbol'],
-                        "CustomerField1" => $biller['CustomerField1'],
-                        "CustomerField2" => $biller['CustomerField2'],
-                        "SupportEmail" => $biller['SupportEmail'],
-                        "Surcharge" => $biller['Surcharge'],
-                        "Url" => $biller['Url'],
-                        "LogoUrl" => $biller['LogoUrl'],
-                        "IsActive" => $biller['IsActive'],
-                        "ShortName" => $biller['ShortName'],
-                        "CustomSectionUrl" => $biller['CustomSectionUrl'],
-                        "ID" => $biller['ID'],
-                        "Name" => $biller['Name'],
-                        "Status" => $biller['Status'],
-                        "StatusDetails" => $biller['StatusDetails'],
-                        "RequestStatus" => $biller['RequestStatus'],
-                        "ResponseDescription" => $biller['ResponseDescription'],
-                        "ResponseStatus" => $biller['ResponseStatus'],
-                    ];
-                }
-            }
-
-            return $formatted;
-
-        } catch (\Exception $e) {
-
-            $message = "Account Balance Error ====>>>" . $e->getMessage();
-            send_notification($message);
-            return 0;
-        }
-
-
-    }
-    public function get_betting_biller(){
-
-        try {
-
-            $Token = $this->token;
-            $response = $this->client->get($this->thirdpartybaseUrl . "BillsPayment/GetBillers/{$Token}", [
-                'headers' => [
-                    'Accept' => 'application/json'
-                ]
-            ]);
-
-            $data = json_decode($response->getBody(), true) ?? [];
-
-            $formatted = [];
-
-            foreach ($data as $biller) {
-               if ($biller['CategoryId'] == "41") {
-              // if($biller['BillerID'] == 0){
-                    $formatted[] = [
-                        "CategoryId" => $biller['CategoryId'],
-                        "BillerID" => $biller['BillerID'],
-                        "BillerCategoryID" => $biller['BillerCategoryID'],
-                        "Narration" => $biller['Narration'],
-                        "CurrencyCode" => $biller['CurrencyCode'],
-                        "CurrencySymbol" => $biller['CurrencySymbol'],
-                        "CustomerField1" => $biller['CustomerField1'],
-                        "CustomerField2" => $biller['CustomerField2'],
-                        "SupportEmail" => $biller['SupportEmail'],
-                        "Surcharge" => $biller['Surcharge'],
-                        "Url" => $biller['Url'],
-                        "LogoUrl" => $biller['LogoUrl'],
-                        "IsActive" => $biller['IsActive'],
-                        "ShortName" => $biller['ShortName'],
-                        "CustomSectionUrl" => $biller['CustomSectionUrl'],
-                        "ID" => $biller['ID'],
-                        "Name" => $biller['Name'],
-                        "Status" => $biller['Status'],
-                        "StatusDetails" => $biller['StatusDetails'],
-                        "RequestStatus" => $biller['RequestStatus'],
-                        "ResponseDescription" => $biller['ResponseDescription'],
-                        "ResponseStatus" => $biller['ResponseStatus'],
-                    ];
-                }
-            }
-
-            return $formatted;
-
-        } catch (\Exception $e) {
-
-            $message = "Account Balance Error ====>>>" . $e->getMessage();
-            send_notification($message);
-            return 0;
-        }
-
-
-    }
-
-
-    public function get_associations_sociery_biller(){
-
-        try {
-
-            $Token = $this->token;
-            $response = $this->client->get($this->thirdpartybaseUrl . "BillsPayment/GetBillers/{$Token}", [
-                'headers' => [
-                    'Accept' => 'application/json'
-                ]
-            ]);
-
-            $data = json_decode($response->getBody(), true) ?? [];
-
-            $formatted = [];
-
-            foreach ($data as $biller) {
-               if ($biller['CategoryId'] == "28") {
-                    $formatted[] = [
-                        "CategoryId" => $biller['CategoryId'],
-                        "BillerID" => $biller['BillerID'],
-                        "BillerCategoryID" => $biller['BillerCategoryID'],
-                        "Narration" => $biller['Narration'],
-                        "CurrencyCode" => $biller['CurrencyCode'],
-                        "CurrencySymbol" => $biller['CurrencySymbol'],
-                        "CustomerField1" => $biller['CustomerField1'],
-                        "CustomerField2" => $biller['CustomerField2'],
-                        "SupportEmail" => $biller['SupportEmail'],
-                        "Surcharge" => $biller['Surcharge'],
-                        "Url" => $biller['Url'],
-                        "LogoUrl" => $biller['LogoUrl'],
-                        "IsActive" => $biller['IsActive'],
-                        "ShortName" => $biller['ShortName'],
-                        "CustomSectionUrl" => $biller['CustomSectionUrl'],
-                        "ID" => $biller['ID'],
-                        "Name" => $biller['Name'],
-                        "Status" => $biller['Status'],
-                        "StatusDetails" => $biller['StatusDetails'],
-                        "RequestStatus" => $biller['RequestStatus'],
-                        "ResponseDescription" => $biller['ResponseDescription'],
-                        "ResponseStatus" => $biller['ResponseStatus'],
-                    ];
-                }
-            }
-
-            return $formatted;
-
-        } catch (\Exception $e) {
-
-            $message = "Account Balance Error ====>>>" . $e->getMessage();
-            send_notification($message);
-            return 0;
-        }
-
-
-    }
-    public function get_tax_biller(){
-
-        try {
-
-            $Token = $this->token;
-            $response = $this->client->get($this->thirdpartybaseUrl . "BillsPayment/GetBillers/{$Token}", [
-                'headers' => [
-                    'Accept' => 'application/json'
-                ]
-            ]);
-
-            $data = json_decode($response->getBody(), true) ?? [];
-
-            $formatted = [];
-
-            foreach ($data as $biller) {
-               if ($biller['CategoryId'] == "26") {
-                    $formatted[] = [
-                        "CategoryId" => $biller['CategoryId'],
-                        "BillerID" => $biller['BillerID'],
-                        "BillerCategoryID" => $biller['BillerCategoryID'],
-                        "Narration" => $biller['Narration'],
-                        "CurrencyCode" => $biller['CurrencyCode'],
-                        "CurrencySymbol" => $biller['CurrencySymbol'],
-                        "CustomerField1" => $biller['CustomerField1'],
-                        "CustomerField2" => $biller['CustomerField2'],
-                        "SupportEmail" => $biller['SupportEmail'],
-                        "Surcharge" => $biller['Surcharge'],
-                        "Url" => $biller['Url'],
-                        "LogoUrl" => $biller['LogoUrl'],
-                        "IsActive" => $biller['IsActive'],
-                        "ShortName" => $biller['ShortName'],
-                        "CustomSectionUrl" => $biller['CustomSectionUrl'],
-                        "ID" => $biller['ID'],
-                        "Name" => $biller['Name'],
-                        "Status" => $biller['Status'],
-                        "StatusDetails" => $biller['StatusDetails'],
-                        "RequestStatus" => $biller['RequestStatus'],
-                        "ResponseDescription" => $biller['ResponseDescription'],
-                        "ResponseStatus" => $biller['ResponseStatus'],
-                    ];
-                }
-            }
-
-            return $formatted;
-
-        } catch (\Exception $e) {
-
-            $message = "Account Balance Error ====>>>" . $e->getMessage();
-            send_notification($message);
-            return 0;
-        }
-
-
-    }
-
-
-
-    public function pay_bills($data)
-    {
+    public function get_single_transaction($id, $date){
 
 
         try {
-            $data_sent = $data;
-            $data_sent['Token'] = $this->token;
-            $response = $this->client->post($this->thirdpartybaseUrl . "BillsPayment/Payment", [
-                'json' => $data_sent,
+            $response = $this->client->post($this->thirdpartybaseUrl . "CoreTransactions/TransactionStatusQuery", [
+                'json' => [
+                    'RetrievalReference' => $id,
+                    'Token' => $this->token,
+                    'TransactionDate' => $date
+                ],
                 'headers' => [
                     'Accept' => 'application/json',
-                    'Content-Type' => 'application/json',
-                ],
+                    'Content-Type' => 'application/json'
+                ]
             ]);
 
-            $body = json_decode($response->getBody(), true);
-            $status =  true; //$body['IsSuccessful'] ?? null;
+            $data = json_decode($response->getBody(), true);
+
+            dd($data);
 
 
-            dd($body);
 
-            if ($status == true) {
-
-                return [
-                    'Status' => true,
-                    'SessionID' => $body['SessionID'] ?? "10000000000000",
-                ];
-
-            } else {
-
-                $message = "Bank Transfer Failed ===>>>>" . json_encode($body) ?? 'No error message';
-                send_notification($message);
+            if ($data['Name'] != null) {
 
                 return [
-                    'Status' => false,
-                    'Message' => $body['ResponseMessage'],
+                    'codes' => 1,
+                    'name' => $data['Name'],
+                    'session_id' => $data['SessionID'],
+                    'BVN' => $data['BVN'],
+                    'KYC' => $data['KYC']
                 ];
-
 
             }
 
+            return [
+                'codes' => 0,
+                'message' => $data['ResponseMessage']
+            ];
 
-        } catch (RequestException $e) {
-            $message = $e->getMessage();
+        } catch  (\Exception $e) {
+            $message = "Name Inquiry  Error ====>>>" . $e->getMessage();
             send_notification($message);
-            $data['status'] = 0;
-            $data['message'] = $e->getMessage();
-            return $data;
+            return 0;
         }
 
 
     }
+
+
 
 
 
