@@ -7,6 +7,7 @@ use App\Models\Account;
 use App\Models\BankLogo;
 use App\Models\RecentBankDetails;
 use App\Models\Setting;
+use App\Models\SmsCharge;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Services\BankOneService;
@@ -241,13 +242,12 @@ class TransferController extends Controller
 
                 $get_account = $sender_account_no;
                 $acct = str_repeat('*', strlen($get_account) - 4) . substr($get_account, -4);
-                $debit = "N".$request->Amount;
+                $debit = "N" . number_format($request->Amount, 2);
                 $desc = $request->narattion ?? "Trf to " . "$receiver_name";
                 $ref = $response['SessionID'];
                 $date = \Carbon\Carbon::now()->format('d/m/Y h:i A');
-                $bal = "N".$balance;
+                $bal = "N" . number_format($balance, 2);
                 $phone = Auth::user()->phone;
-
                 $message = "Acc: $acct\nDEBIT: $debit\nDesc: $desc\nRef: $ref\nDate: $date\nBal: $bal";
 
 
@@ -257,13 +257,26 @@ class TransferController extends Controller
                 } else {
                     $smsService = new TermiiService();
                     $send_sms = send_sms_termii($phone, $message);
+                    $status = $send_sms->message ?? null;
+                    if ($status == "Successfully Sent") {
+                        User::where('id', Auth::id())->increment('sms_charge', 4);
+                        $sms = new SmsCharge();
+                        $sms->cost = 4;
+                        $sms->channel = "Termii";
+                        $sms->message = $message;
+                        $sms->message_id = $send_sms->message_id;
+                        $sms->save();
+
+                    }
+
+
                 }
+
 
             } catch (\Exception $e) {
                 $message = "SMS DEBIT  Error ====>>>" . $e->getMessage();
                 send_notification($message);
             }
-
 
 
             $bank_logo = BankLogo::where('name', $receiver_bank_name)->first()->logo ?? null;

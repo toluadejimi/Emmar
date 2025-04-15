@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Mobile\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Models\SmsCharge;
 use App\Models\User;
 use App\Services\BankOneService;
 use App\Services\TermiiService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
@@ -347,6 +349,17 @@ class RegisterController extends Controller
                 } else {
                     $smsService = new TermiiService();
                     $send_sms = send_sms_termii($phone, $message);
+                    $status = $send_sms->message ?? null;
+                    if ($status == "Successfully Sent") {
+                        User::where('id', Auth::id())->increment('sms_charge', 4);
+                        $sms = new SmsCharge();
+                        $sms->cost = 4;
+                        $sms->channel = "Termii";
+                        $sms->message = $message;
+                        $sms->message_id = $send_sms->message_id;
+                        $sms->save();
+
+                    }
                 }
 
                 return response()->json([
