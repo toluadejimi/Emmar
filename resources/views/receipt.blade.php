@@ -80,8 +80,8 @@
 <body>
 <div class="container">
 
-    <svg width="79" height="22" viewBox="0 0 79 22" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <rect width="79" height="22" fill="url(#pattern0_5880_3467)"/>
+    <svg style="margin: 0px;" width="180" height="65" viewBox="0 0 79 22" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <rect width="70" height="20" fill="url(#pattern0_5880_3467)"/>
         <defs>
             <pattern id="pattern0_5880_3467" patternContentUnits="objectBoundingBox" width="1" height="1">
                 <use xlink:href="#image0_5880_3467" transform="matrix(0.00137741 0 0 0.005 -0.139119 -0.951376)"/>
