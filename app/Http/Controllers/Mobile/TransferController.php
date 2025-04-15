@@ -253,6 +253,7 @@ class TransferController extends Controller
                 'status' => true,
                 'message' => "Transaction Successful",
                 'InstrumentNo' => $trxref
+
             ], 200);
 
 

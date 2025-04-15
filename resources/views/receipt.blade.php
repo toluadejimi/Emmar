@@ -145,7 +145,7 @@
     </div>
 
     <div class="notice">
-        <strong>Notice</strong><br><br> This is an online auto generated transaction receipt.<br> This is an authentic receipt. For further inquiries, contact 0700 909 909 909<br> Email: customercare@emaarmfb.com
+        <strong>Notice</strong><br><br> This is an online auto generated transaction receipt.<br> This is an authentic receipt. For further inquiries, contact 0812345678 <br> Email: customercare@emaarmfb.com
     </div>
 
     <div class="footer">
