@@ -234,7 +234,7 @@ class TransferController extends Controller
             $trx->save();
 
 
-            try {
+//            try {
 
                 $get_balance = $this->bankOneService->get_balance($sender_account_no);
                 $balance = $get_balance['availabe_balance'];
@@ -261,11 +261,11 @@ class TransferController extends Controller
                     $send_sms = send_sms_termii($phone, $message);
                 }
 
-            } catch (\Exception $e) {
-                $message = "SMS DEBIT  Error ====>>>" . $e->getMessage();
-                send_notification($message);
-                return 0;
-            }
+//            } catch (\Exception $e) {
+//                $message = "SMS DEBIT  Error ====>>>" . $e->getMessage();
+//                send_notification($message);
+//                return 0;
+//            }
 
 
 
