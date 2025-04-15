@@ -48,7 +48,7 @@ class TransactionController extends Controller
     public function notification(request $request)
     {
 
-        $message = "Emaar Webhook Notification ===>>>>> \n\n". json_encode($request->all);
+        $message = "Emaar Webhook Notification ===>>>>> \n\n". json_encode($request->all());
         send_notification($message);
 
     }
