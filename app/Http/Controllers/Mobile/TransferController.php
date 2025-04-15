@@ -262,7 +262,6 @@ class TransferController extends Controller
             } catch (\Exception $e) {
                 $message = "SMS DEBIT  Error ====>>>" . $e->getMessage();
                 send_notification($message);
-                return 0;
             }
 
 
