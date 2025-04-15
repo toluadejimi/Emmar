@@ -102,7 +102,9 @@ class AirtimeController extends Controller
             'Narration' => "Debit for Airtime",
         ];
 
-        $response = ['ResponseCode' => "00", 'Reference' => "000000000"]; //$this->bankOneService->initiate_customer_debit($data);
+        $response = $this->bankOneService->initiate_customer_debit($data);
+
+       // ['ResponseCode' => "00", 'Reference' => "000000000"]; //
 
 
 
