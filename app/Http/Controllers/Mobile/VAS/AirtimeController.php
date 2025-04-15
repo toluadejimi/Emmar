@@ -111,15 +111,18 @@ class AirtimeController extends Controller
 
             try {
 
-                $apiKey = env('VTPASSAPIKEY');
-                $skKey = env('VTPASSSKKEY');
-                $requestId = date('YmdHis') . Str::random(4);
 
-
-                //Deduction
 
                 if($response['ResponseCode'] == "00"){
-                    $airtime = $this->VTpass->Pay($requestId, $request->service_id, $amount, $request->phone, $apiKey, $skKey);
+
+
+                    $apiKey = env('VTPASSAPIKEY');
+                    $skKey = env('VTPASSSKKEY');
+                    $requestId = date('YmdHis') . Str::random(4);
+                    $variation_code = "";
+                    $biller_code = $request->phone;
+
+                    $airtime = $this->VTpass->Pay($requestId, $request->service_id, $variation_code, $biller_code, $amount, $request->phone, $apiKey, $skKey);
                     if ($airtime['status'] == true) {
                         $trx = new Transaction();
                         $trx->trx_ref = $referenceCode;
