@@ -1,8 +1,12 @@
 import sys
 import face_recognition
+import traceback
 
 def compare_faces(image1_path, image2_path):
     try:
+        print(f"Image1 path: {image1_path}", flush=True)
+        print(f"Image2 path: {image2_path}", flush=True)
+
         # Load images
         image1 = face_recognition.load_image_file(image1_path)
         image2 = face_recognition.load_image_file(image2_path)
@@ -12,10 +16,10 @@ def compare_faces(image1_path, image2_path):
         encodings2 = face_recognition.face_encodings(image2)
 
         if not encodings1:
-            print("Error: No face found in image 1")
+            print("Error: No face found in image 1", flush=True)
             return
         if not encodings2:
-            print("Error: No face found in image 2")
+            print("Error: No face found in image 2", flush=True)
             return
 
         encoding1 = encodings1[0]
@@ -25,12 +29,13 @@ def compare_faces(image1_path, image2_path):
         result = face_recognition.compare_faces([encoding1], encoding2)
 
         if result[0]:
-            print("Match ✅")
+            print("Match ✅", flush=True)
         else:
-            print("No Match ❌")
+            print("No Match ❌", flush=True)
 
     except Exception as e:
-        print(f"Error: {e}")
+        print("Error occurred:", flush=True)
+        traceback.print_exc(file=sys.stdout)  # Dump full error
 
 if __name__ == "__main__":
     compare_faces(sys.argv[1], sys.argv[2])

@@ -45,6 +45,8 @@ class FaceRecognitionController extends Controller
             unlink($image2);
         }
 
+        Log::info("Running: $command");
+        $output = shell_exec($command);
         Log::info("Face Recognition Output: " . $output);
 
         return response()->json(["message" => trim($output) ?: "No output from script"]);
