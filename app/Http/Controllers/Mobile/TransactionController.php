@@ -103,23 +103,49 @@ class TransactionController extends Controller
 
     public function downloadReceipt(Request $request)
     {
-        $date = now();
+
+        $id = $request->InstrumentNo;
+
+        $trx = Transaction::where('trx_ref', $id)->first() ?? null;
+        if($trx == null){
+            return response()->json([
+                'status' => false,
+                'message' => "Transaction not found",
+            ], 401);
+        }
+
+
+        $date = $trx->created_at;
         $dateFull = $date->format('d F Y H:i');
         $dateOnly = $date->format('d F Y');
+
+        if($trx->transaction_type == "Bank_Transfer"){
+            $type = "Bank Transfer";
+        }elseif($trx->transaction_type == "VAS" && $trx->vas_type == "airtime"){
+            $type = "Airtime";
+        }else{
+            $type = "BILLS";
+        }
+
+        if($trx->status == 1){
+            $status = "Successful";
+        }elseif($trx->status == 0){
+            $status = "Pending";
+        }else{
+            $status = "Failed";
+        }
 
         $pdf = Pdf::loadView('receipt', [
             'date' => $dateFull,
             'dateOnly' => $dateOnly,
-            'amount' => '100.00',
-            'type' => 'one off payment',
-            'beneficiary' => 'TOLULOPE ADEWALE ADEJIMI',
-            'beneficiary_account' => '907*****33',
-            'beneficiary_bank' => 'PalmPay',
-            'sender' => 'TOLULOPE ADEJIMI',
-            'sender_account' => '001*****20',
-            'sender_bank' => 'Stanbic IBTC Bank',
-            'status' => 'successful',
-            'narration' => 'TOLULOPE ADEWALE ADEJIMI',
+            'amount' => number_format($trx->amount, 2),
+            'type' => $type,
+            'beneficiary' => $trx->receiver_name,
+            'beneficiary_account' => $trx->receiver_account_no,
+            'beneficiary_bank' => $trx->receiver_bank_name,
+            'sender' => $trx->sender_name,
+            'status' => $status,
+            'narration' => $trx->narattion,
         ]);
 
         return $pdf->download('transaction_receipt.pdf');

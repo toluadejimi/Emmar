@@ -227,6 +227,7 @@ class TransferController extends Controller
             $trx->sender_name = $sender_name;
             $trx->transaction_type = "Bank_Transfer";
             $trx->note = "Transaction successful";
+            $trx->narattion = $request->narattion ?? "Trf to " . "$receiver_name";
             $trx->session_id = $response['SessionID'];
             $trx->UniqueIdentifier = $response['UniqueIdentifier'];
             $trx->sender_account_no = $sender_account_no;

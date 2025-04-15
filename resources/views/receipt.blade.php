@@ -135,16 +135,6 @@
     </div>
 
     <div class="section">
-        <div class="label"></div>
-        <div class="value">{{ $sender_account }}</div>
-    </div>
-
-    <div class="section">
-        <div class="label"></div>
-        <div class="value">{{ $sender_bank }}</div>
-    </div>
-
-    <div class="section">
         <div class="label">Status</div>
         <div class="value">{{ $status }}</div>
     </div>
