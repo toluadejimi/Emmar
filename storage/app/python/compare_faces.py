@@ -38,7 +38,7 @@ def compare_faces(image1_path, image2_path):
 
     except Exception:
         print("Error occurred during comparison:", flush=True)
-        traceback.print_exc(file=sys.stdout)  # Full error stack trace
+        traceback.print_exc(file=sys.stdout)
 
 if __name__ == "__main__":
     compare_faces(sys.argv[1], sys.argv[2])
