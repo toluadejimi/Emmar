@@ -152,6 +152,8 @@ class TransactionController extends Controller
             'beneficiary_bank' => $trx->receiver_bank_name,
             'sender' => $trx->sender_name,
             'status' => $status,
+            'session_id' => $trx->session_id,
+            'ref' => $id,
             'narration' => $trx->narattion,
         ]);
 

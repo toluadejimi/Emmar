@@ -139,6 +139,17 @@
         <div class="value">{{ $status }}</div>
     </div>
 
+
+    <div class="section">
+        <div class="label">Session ID</div>
+        <div class="value">{{ $session_id }}</div>
+    </div>
+
+    <div class="section">
+        <div class="label">Refrence ID</div>
+        <div class="value">{{ $ref }}</div>
+    </div>
+
     <div class="section">
         <div class="label">Narration</div>
         <div class="value">{{ $narration }}</div>
