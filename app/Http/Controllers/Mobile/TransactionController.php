@@ -121,10 +121,8 @@ class TransactionController extends Controller
             ], 401);
         }
 
-
-        $date = $trx->created_at;
-        $dateFull = $date->format('d F Y H:i');
-        $dateOnly = $date->format('d F Y');
+        $get_date = $trx->created_at;
+        $date = \Carbon\Carbon::parse($get_date)->format('Y-m-d h:i A');
 
         if($trx->transaction_type == "Bank_Transfer"){
             $type = "Bank Transfer";
@@ -143,8 +141,7 @@ class TransactionController extends Controller
         }
 
         $pdf = Pdf::loadView('receipt', [
-            'date' => $dateFull,
-            'dateOnly' => $dateOnly,
+            'date' => $date,
             'amount' => number_format($trx->amount, 2),
             'type' => $type,
             'beneficiary' => $trx->receiver_name,

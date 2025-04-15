@@ -109,10 +109,7 @@
         <div class="value">{{ $type }}</div>
     </div>
 
-    <div class="section">
-        <div class="label"></div>
-        <div class="value">{{ $dateOnly }}</div>
-    </div>
+
 
     <div class="section">
         <div class="label">Beneficiary</div>
