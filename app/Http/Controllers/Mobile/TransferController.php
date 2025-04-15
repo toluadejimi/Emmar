@@ -4,14 +4,13 @@ namespace App\Http\Controllers\Mobile;
 
 use App\Http\Controllers\Controller;
 use App\Models\Account;
-use App\Models\Bank;
 use App\Models\BankLogo;
 use App\Models\RecentBankDetails;
 use App\Models\Setting;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Services\BankOneService;
-use Barryvdh\DomPDF\Facade\Pdf;
+use App\Services\TermiiService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -152,7 +151,7 @@ class TransferController extends Controller
 
 
         $final_tranferaable_amount = $request->Amount + $set->transfer_charges;
-        if((int)$balance < $final_tranferaable_amount){
+        if ((int)$balance < $final_tranferaable_amount) {
             return response()->json([
                 'status' => false,
                 'message' => "Insufficient Funds"
@@ -166,8 +165,6 @@ class TransferController extends Controller
                 'message' => "You can not transfer at the moment, Please contact support"
             ], 422);
         }
-
-
 
 
         if ($can_transfer == 0) {
@@ -194,7 +191,6 @@ class TransferController extends Controller
         }
 
 
-
         $data = [
             'Amount' => $amount,
             'PayerAccountNumber' => $sender_account_no,
@@ -215,7 +211,7 @@ class TransferController extends Controller
         $status = $response['Status'] ?? null;
 
 
-        if ($status == true ) {
+        if ($status == true) {
 
             $trx = new Transaction();
             $trx->trx_ref = $trxref;
@@ -238,6 +234,41 @@ class TransferController extends Controller
             $trx->save();
 
 
+            try {
+
+                $get_balance = $this->bankOneService->get_balance($sender_account_no);
+                $balance = $get_balance['availabe_balance'];
+
+                $get_account = $sender_account_no;
+                $acct = str_repeat('*', strlen($get_account) - 4) . substr($get_account, -4);
+                $debit = "N".$request->Amount;
+                $desc = $request->narattion ?? "Trf to " . "$receiver_name";
+                $ref = $response['SessionID'];
+                $date = \Carbon\Carbon::now()->format('d/m/Y h:i A');
+                $bal = "N".$balance;
+                $phone = Auth::user()->phone;
+
+                $message = "Acc: $acct\nDEBIT: $debit\nDesc: $desc\nRef: $ref\nDate: $date\nBal: $bal";
+
+
+                $set = Setting::where('id', 1)->first();
+                $acct = $response['account_no'];
+
+                if ($set->sms_provider == "africa") {
+                    $send_sms = send_sms_africa($phone, $message);
+                } else {
+                    $smsService = new TermiiService();
+                    $send_sms = send_sms_termii($phone, $message);
+                }
+
+            } catch (\Exception $e) {
+                $message = "SMS DEBIT  Error ====>>>" . $e->getMessage();
+                send_notification($message);
+                return 0;
+            }
+
+
+
             $bank_logo = BankLogo::where('name', $receiver_bank_name)->first()->logo ?? null;
             $rec = new RecentBankDetails();
             $rec->user_id = Auth::id();
@@ -257,7 +288,7 @@ class TransferController extends Controller
             ], 200);
 
 
-        } elseif ($status == false ) {
+        } elseif ($status == false) {
 
             $trx = new Transaction();
             $trx->trx_ref = $trxref;
@@ -278,7 +309,7 @@ class TransferController extends Controller
 
             return response()->json([
                 'status' => false,
-                'message' => "Transaction Failed | ". $response['Message']
+                'message' => "Transaction Failed | " . $response['Message']
             ], 422);
 
 
@@ -354,21 +385,18 @@ class TransferController extends Controller
 
         $type = $request->type;
         $set = Setting::where('id', 1)->first();
-        if($type == "interbank"){
+        if ($type == "interbank") {
             return response()->json([
                 'status' => true,
                 'fee' => $set->transfer_charges ?? 0
             ], 200);
-        }elseif($type == "cable"){
+        } elseif ($type == "cable") {
 
             return response()->json([
                 'status' => true,
                 'fee' => $set->cable_charges ?? 0
             ], 200);
         }
-
-
-
 
 
     }
@@ -397,7 +425,7 @@ class TransferController extends Controller
 
 
         $final_tranferaable_amount = $request->Amount;
-        if((int)$balance < $final_tranferaable_amount){
+        if ((int)$balance < $final_tranferaable_amount) {
             return response()->json([
                 'status' => false,
                 'message' => "Insufficient Funds"
@@ -411,8 +439,6 @@ class TransferController extends Controller
                 'message' => "You can not transfer at the moment, Please contact support"
             ], 422);
         }
-
-
 
 
         if ($can_transfer == 0) {
@@ -454,7 +480,7 @@ class TransferController extends Controller
         $status = $response['Status'] ?? null;
 
 
-        if ($status == true ) {
+        if ($status == true) {
 
             $trx = new Transaction();
             $trx->trx_ref = $trxref;
@@ -463,7 +489,7 @@ class TransferController extends Controller
             $trx->receiver_bank_name = "EMAAR MICROFINANCEBANK";
             $trx->receiver_account_no = $receiver_account_no;
             $trx->receiver_name = $receiver_name;
-            $trx->sender_name = Auth::user()->first_name." ".Auth::user()->last_name." ".Auth::user()->other_name;
+            $trx->sender_name = Auth::user()->first_name . " " . Auth::user()->last_name . " " . Auth::user()->other_name;
             $trx->transaction_type = "Local_Bank_Transfer";
             $trx->note = "Transaction successful";
             $trx->session_id = $response['SessionID'];
@@ -494,7 +520,7 @@ class TransferController extends Controller
             ], 200);
 
 
-        } elseif ($status == false ) {
+        } elseif ($status == false) {
 
             $trx = new Transaction();
             $trx->trx_ref = $trxref;
@@ -531,12 +557,6 @@ class TransferController extends Controller
 
 
     }
-
-
-
-
-
-
 
 
 }
