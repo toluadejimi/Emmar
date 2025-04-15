@@ -23,7 +23,7 @@ class FaceRecognitionController extends Controller
         }
 
         // Paths
-        $pythonPath = "/var/www/html/Emaar/myenv/bin/python3";
+        $pythonPath = "/usr/bin/python3";
         $scriptPath = storage_path("app/python/compare_faces.py");
         $image1 = storage_path('app/public/' . $user_image);
 
