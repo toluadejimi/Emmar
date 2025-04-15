@@ -251,8 +251,9 @@ class TransferController extends Controller
 
             return response()->json([
                 'status' => true,
-                'message' => "Transaction Successful"
-            ], 422);
+                'message' => "Transaction Successful",
+                'InstrumentNo' => $trxref
+            ], 200);
 
 
         } elseif ($status == false ) {
