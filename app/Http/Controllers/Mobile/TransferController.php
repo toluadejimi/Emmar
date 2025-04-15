@@ -213,6 +213,9 @@ class TransferController extends Controller
 
        $status = true;
 
+        $response = ['SessionID' => "0000", "UniqueIdentifier" => "445555" ];
+
+
         if ($status == true) {
 
             $trx = new Transaction();
