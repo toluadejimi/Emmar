@@ -35,6 +35,11 @@ Route::post('name-enquiry', [TransferController::class, 'name_inquary']);
 
 
 
+Route::post('verify-face', [FaceRecognitionController::class, 'compareFaces']);
+
+
+
+
 
 Route::get('get-airtime-biller', [AirtimeController::class, 'get_airtime_biller']);
 Route::get('get-data-biller', [DataController::class, 'get_data']);
