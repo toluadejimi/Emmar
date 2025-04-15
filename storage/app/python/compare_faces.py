@@ -15,6 +15,9 @@ def compare_faces(image1_path, image2_path):
         encodings1 = face_recognition.face_encodings(image1)
         encodings2 = face_recognition.face_encodings(image2)
 
+        print(f"Encodings1 found: {len(encodings1)}", flush=True)
+        print(f"Encodings2 found: {len(encodings2)}", flush=True)
+
         if not encodings1:
             print("Error: No face found in image 1", flush=True)
             return
@@ -33,9 +36,9 @@ def compare_faces(image1_path, image2_path):
         else:
             print("No Match ❌", flush=True)
 
-    except Exception as e:
-        print("Error occurred:", flush=True)
-        traceback.print_exc(file=sys.stdout)  # Dump full error
+    except Exception:
+        print("Error occurred during comparison:", flush=True)
+        traceback.print_exc(file=sys.stdout)  # Full error stack trace
 
 if __name__ == "__main__":
     compare_faces(sys.argv[1], sys.argv[2])
