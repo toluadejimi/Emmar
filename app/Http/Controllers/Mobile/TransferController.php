@@ -192,28 +192,28 @@ class TransferController extends Controller
         }
 
 
-//        $data = [
-//            'Amount' => $amount,
-//            'PayerAccountNumber' => $sender_account_no,
-//            'Payer' => $sender_name,
-//            'ReceiverBankCode' => $bank_code,
-//            'ReceiverAccountNumber' => $receiver_account_no,
-//            'ReceiverName' => $receiver_name,
-//            'TransactionReference' => $trxref,
-//            'Narration' => $request->narattion ?? "Trf to " . "$receiver_name",
-//            'NIPSessionID' => $request->session_id,
-//            'ReceiverBVN' => $request->BVN,
-//            'ReceiverKYC' => $request->KYC,
-//        ];
-//
-//        $response = $this->bankOneService->initiate_bank_transfer($data);
-//
-//
-//        $status = $response['Status'] ?? null;
+        $data = [
+            'Amount' => $amount,
+            'PayerAccountNumber' => $sender_account_no,
+            'Payer' => $sender_name,
+            'ReceiverBankCode' => $bank_code,
+            'ReceiverAccountNumber' => $receiver_account_no,
+            'ReceiverName' => $receiver_name,
+            'TransactionReference' => $trxref,
+            'Narration' => $request->narattion ?? "Trf to " . "$receiver_name",
+            'NIPSessionID' => $request->session_id,
+            'ReceiverBVN' => $request->BVN,
+            'ReceiverKYC' => $request->KYC,
+        ];
 
-       $status = true;
+        $response = $this->bankOneService->initiate_bank_transfer($data);
 
-        $response = ['SessionID' => "0000", "UniqueIdentifier" => "445555" ];
+
+        $status = $response['Status'] ?? null;
+
+      // $status = true;
+
+       // $response = ['SessionID' => "0000", "UniqueIdentifier" => "445555" ];
 
 
         if ($status == true) {
@@ -239,7 +239,7 @@ class TransferController extends Controller
             $trx->save();
 
 //
-//            try {
+            try {
 
                 $get_balance = $this->bankOneService->get_balance($sender_account_no);
                 $balance = $get_balance['availabe_balance'];
@@ -278,10 +278,10 @@ class TransferController extends Controller
                 }
 
 
-//            } catch (\Exception $e) {
-//                $message = "SMS DEBIT  Error ====>>>" . $e->getMessage();
-//                send_notification($message);
-//            }
+            } catch (\Exception $e) {
+                $message = "SMS DEBIT  Error ====>>>" . $e->getMessage();
+                send_notification($message);
+            }
 
 
             $bank_logo = BankLogo::where('name', $receiver_bank_name)->first()->logo ?? null;

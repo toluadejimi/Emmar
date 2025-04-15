@@ -349,14 +349,14 @@ class RegisterController extends Controller
                 } else {
                     $smsService = new TermiiService();
                     $send_sms = send_sms_termii($phone, $message);
-                    $status = $send_sms->message ?? null;
-                    if ($status == "Successfully Sent") {
+                    $data = $send_sms->getData(true); // as array
+                    if ($data['code'] === 'ok') {
                         User::where('id', Auth::id())->increment('sms_charge', 4);
                         $sms = new SmsCharge();
                         $sms->cost = 4;
                         $sms->channel = "Termii";
                         $sms->message = $message;
-                        $sms->message_id = $send_sms->message_id;
+                        $sms->message_id = $data['message_id'];
                         $sms->save();
 
                     }
