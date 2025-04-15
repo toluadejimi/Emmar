@@ -106,6 +106,13 @@ class TransactionController extends Controller
 
         $id = $request->InstrumentNo;
 
+        if($request->InstrumentNo == null){
+            return response()->json([
+                'status' => false,
+                'message' => "Transaction REF can not be null",
+            ], 422);
+        }
+
         $trx = Transaction::where('trx_ref', $id)->first() ?? null;
         if($trx == null){
             return response()->json([
