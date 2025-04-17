@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Mobile;
 use App\Http\Controllers\Controller;
 use App\Models\Account;
 use App\Models\BankLogo;
+use App\Models\Beneficary;
 use App\Models\RecentBankDetails;
 use App\Models\Setting;
 use App\Models\SmsCharge;
@@ -148,6 +149,23 @@ class TransferController extends Controller
         $get_balance = $this->bankOneService->get_balance($sender_account_no);
         $balance = $get_balance['availabe_balance'];
         $user_pin = User::where('id', Auth::id())->first()->pin;
+
+
+        if($request->save_as_beneficiary == true ){
+
+
+            $ck_bene =  Beneficary::where('acct_no', $sender_account_no)->where('bank_code', $bank_code)->first() ?? null;
+            if($ck_bene == null){
+                $bene = new Beneficary();
+                $bene->user_id = Auth::id();
+                $bene->acct_no = $sender_account_no;
+                $bene->bank_name = $receiver_bank_name;
+                $bene->name = $sender_name;
+                $bene->save();
+            }
+
+        }
+
 
 
         $final_tranferaable_amount = $request->Amount + $set->transfer_charges;
@@ -354,8 +372,7 @@ class TransferController extends Controller
             'user_id' => Auth::id(),
             'status' => 1,
             'transaction_type' => "Bank_Transfer"
-
-        ])->sum('amount');
+        ])->orWhere('transaction_type', 'VAS')->sum('amount');
         $limit = $get_limit - $today_limit ?? 0;
 
 
@@ -449,9 +466,6 @@ class TransferController extends Controller
         $user_pin = User::where('id', Auth::id())->first()->pin;
 
 
-        if($request->save_as_beneficiary == true ){
-
-        }
 
 
         $final_tranferaable_amount = $request->Amount;
