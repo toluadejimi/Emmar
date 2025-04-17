@@ -131,7 +131,6 @@ class TransferController extends Controller
     public function initiate_transfer(request $request)
     {
 
-
         $amount = $request->Amount * 100;
         $sender_account_no = $request->senderAccountNo;
         $sender_name = $request->senderName;
@@ -350,6 +349,15 @@ class TransferController extends Controller
 
         $response = $this->bankOneService->name_enquiry($code, $account_no);
 
+        $get_limit = Setting::where('id', 1)->first()->daily_limit ?? 0;
+        $today_limit = Transaction::where([
+            'user_id' => Auth::id(),
+            'status' => 1,
+            'transaction_type' => "Bank_Transfer"
+
+        ])->sum('amount');
+        $limit = $get_limit - $today_limit ?? 0;
+
 
         if ($response['codes'] == 0) {
 
@@ -365,7 +373,8 @@ class TransferController extends Controller
                 'name' => $response['name'],
                 'session_id' => $response['session_id'],
                 'BVN' => $response['BVN'],
-                'KYC' => $response['KYC']
+                'KYC' => $response['KYC'],
+                'daily_limit' => $limit
             ]);
         }
 
@@ -431,12 +440,18 @@ class TransferController extends Controller
         $trxref = "ER" . date('dmhis');
 
 
+
         $can_transfer = User::where('id', Auth::id())->first()->can_transfer;
         $account_tier = Account::where('user_id', Auth::id())->first()->account_tier;
         $set = Setting::where('id', 1)->first();
         $get_balance = $this->bankOneService->get_balance($sender_account_no);
         $balance = $get_balance['availabe_balance'];
         $user_pin = User::where('id', Auth::id())->first()->pin;
+
+
+        if($request->save_as_beneficiary == true ){
+
+        }
 
 
         $final_tranferaable_amount = $request->Amount;
