@@ -84,6 +84,7 @@ Route::group(['middleware' => ['auth:api', 'acess']], function () {
 
     //Profile
     Route::get('get-account', [ProfileController::class, 'get_user_account']);
+    Route::get('get-beneficary', [TransferController::class, 'get_beneficary']);
 
 
 

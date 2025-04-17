@@ -129,6 +129,18 @@ class TransferController extends Controller
 
     }
 
+
+    public function get_beneficary()
+    {
+
+        $bene = Beneficary::where('user_id', Auth::id())->get()->makeHidden(['created_at', 'updated_at']);
+        return response()->json([
+            'success' => true,
+            'data' => $bene
+        ]);
+
+    }
+
     public function initiate_transfer(request $request)
     {
 
